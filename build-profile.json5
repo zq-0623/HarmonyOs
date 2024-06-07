@@ -1,0 +1,50 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.cer",
+          "storePassword": "0000001BE40ED9BDCBD7D36324E58E49C089AFDF997AC3A80D922377229B0ACEB3FE0EDD92C7DC9B96D96D",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B790D2AD2CC5E65090C7051CCB9F485FE1B1B26EC7F117FD45C07AEEF369947AB9249F1BB17DCCA",
+          "profile": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": "4.1.0(11)",
+        "compatibleSdkVersion": "4.1.0(11)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
