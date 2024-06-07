@@ -42,16 +42,10 @@ struct ABListResponse {
         console.info('cost ' + (endTime - beginTime))
         this.message = resp.toString();   // 输出response到手机屏幕  string类型
         if (resp.items) {
-          console.info("A股行情时间：" + resp.items[0].dateTimeA)
-          console.info("A股代码：" + resp.items[0].codeA)
-          console.info("A股名称：" + resp.items[0].nameA)
-          console.info("A股市场：" + resp.items[0].marketA)
-          console.info("A股次类别：" + resp.items[0].subtypeA)
-          console.info("A股最新价：" + resp.items[0].lastPriceA)
-          console.info("A股前收盘价：" + resp.items[0].preClosePriceA)
-          console.info("A股涨跌幅：" + resp.items[0].changeRateA)
-          console.info("B股行情时间：" + resp.items[0].dateTimeB)
-          console.info("B股代码：" + resp.items[0].codeB)
+          for (let i = 0; i < resp.items.length; i++) {
+            let str = resp.items[i]
+            console.info(`A股行情时间:${str.dateTimeA}==A股代码:${str.codeA}==A股名称:${str.nameA}==A股市场:${str.marketA}==A股次类别:${str.subtypeA}==A股最新价:${str.lastPriceA}==A股前收盘价:${str.preClosePriceA}==A股涨跌幅:${str.changeRateA}==B股行情时间:${str.dateTimeB}==B股代码:${str.codeB}==B股名称:${str.nameB}==B股市场别:${str.marketB}==B股类别:${str.subtypeB}==B股最新价:${str.lastPriceB}==B股前收盘价:${str.preClosePriceB}==B股涨幅:${str.changeRateB}==AB溢价率:${str.premiumRateAB}==BA溢价率:${str.premiumRateBA}==B股涨跌:${str.changeB}==A股涨跌:${str.changeA}`)
+          }
         }
       },
       onFail: (err: ErrorInfo) => {

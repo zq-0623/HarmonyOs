@@ -7,7 +7,7 @@ struct ChartOneReq {
   requestList:Array<ListRequestType> = [
     {title: "分时走势-SH1001",request: "ChartReq",param:{code: "600000.sh", subtype: "1001",chartType:ChartType.ChartTypeOneDay,returnAFData:true}},
     {title: "分时走势-SH1002",request: "ChartReq",param:{code: "900948.sh", subtype: "1002",chartType:ChartType.ChartTypeOneDay,returnAFData:true}},
-    {title: "分时走势-SH1006",request: "ChartReq",param:{code: "688009.sh", subtype: "1006",chartType:ChartType.ChartTypeOneDay,returnAFData:false}},
+    {title: "分时走势-SH1006",request: "ChartReq",param:{code: "688223.sh", subtype: "1006",chartType:ChartType.ChartTypeOneDay,returnAFData:false}},
     {title: "分时走势-SH1100",request: "ChartReq",param:{code: "513330.sh", subtype: "1100",chartType:ChartType.ChartTypeOneDay,returnAFData:true}},
     {title: "分时走势-SH1300",request: "ChartReq",param:{code: "204001.sh", subtype: "1300",chartType:ChartType.ChartTypeOneDay,returnAFData:true}},
     {title: "分时走势-SH1400",request: "ChartReq",param:{code: "000001.sh", subtype: "1400",chartType:ChartType.ChartTypeOneDay,returnAFData:true}},

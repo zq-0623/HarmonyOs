@@ -33,25 +33,12 @@ struct ABLinkResponse {
     for (let keyValue of Object.entries(this.param)) {
       Reflect.set(this.request, keyValue[0], keyValue[1]);
     }
-    let date = new Date()
-    let beginTime = date.getTime()
     this.request.send({
-      onSuccess: (resp: ABLinkResp) => {   // 快照响应
-        let date = new Date()
-        let endTime = date.getTime()
-        console.info('cost ' + (endTime - beginTime))
+      onSuccess: (resp: ABLinkResp) => {
         this.message = resp.toString();   // 输出response到手机屏幕  string类型
         if (resp.item) {
-          console.info("代码：" + resp.item.code)
-          console.info("名称：" + resp.item.name)
-          console.info("市场：" + resp.item.market)
-          console.info("类别：" + resp.item.subtype)
-          console.info("最新价：" + resp.item.lastPrice)
-          console.info("昨收价：" + resp.item.preClosePrice)
-          console.info("涨跌：" + resp.item.change)
-          console.info("涨幅：" + resp.item.changeRate)
-          console.info("AB溢价率：" + resp.item.premiumRateAB)
-          console.info("BA溢价率：" + resp.item.premiumRateBA)
+          let str = resp.item
+          console.info(`代码:${str.code}==名称:${str.name}==市场:${str.market}==类别:${str.subtype}==最新价:${str.lastPrice}==昨收价:${str.preClosePrice}==涨跌:${str.change}==涨幅:${str.changeRate}==	AB溢价率:${str.premiumRateAB}==BA溢价率:${str.premiumRateBA}`)
         }
       },
       onFail: (err: ErrorInfo) => {
