@@ -5,7 +5,7 @@ import { OHLCPeriod, OHLCPriceAdjustedMode, RequestType } from 'SseCore'
 struct NewThreeHundredK {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "最新300根历史K线-SH1001",request: "OHLCReq",param:{code:"600000.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,requestType:RequestType.RequestTypeRecent}},
+    {title: "最新300根历史K线-SH1001",request: "OHLCReq",param:{code:"600000.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
     {title: "最新300根历史K线-SH1002",request: "OHLCReq",param:{code:"900948.sh", subtype:"1002",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
     {title: "最新300根历史K线-SH1006",request: "OHLCReq",param:{code:"688009.sh", subtype:"1006",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
     {title: "最新300根历史K线-SH1100",request: "OHLCReq",param:{code:"513330.sh", subtype:"1100",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},

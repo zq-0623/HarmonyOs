@@ -6,17 +6,12 @@ import {SseConfig,SseSDK,Permission,RegisterReq, L2TickEntrustResp,IPush, MQTTMa
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 import { SpUtils } from '../util/SpUtils';
-import fs from '@ohos.file.fs';
-import { Log } from '@abner/log/src/main/ets/Log';
-import { TextUtils } from 'SseCore/src/main/ets/b/b4/t4';
-import { FileUtils } from 'SseCore/src/main/ets/b/b4/v4';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let sseConfig: SseConfig = new SseConfig()
     let testfile: string = "test.txt"
-    FileUtils.saveFile("console",testfile)
     SpUtils.getInstance(this.context);
     sseConfig.setContext(this.context).setAppkey("RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=");
     SseSDK.setConfig(sseConfig);
@@ -30,8 +25,8 @@ export default class EntryAbility extends UIAbility {
       // .addShSzPermission(Permission.SH_L2_PLUS)  // 沪L2plus权限  后台若配置L2plus权限，则SDK可以不用单独设置，但必须设置L2权限
       // .addShSzPermission(Permission.SZ_L2_PLUS)  // 深L2plus权限
       // .addShSzOverseaPermission(Permission.OL_LEVEL_1)  // 境外沪深Level1权限必须一起设置，不支持单独设置
-      .addShSzOverseaPermission(Permission.OL_SH_LEVEL_2)  // 境外上海Level2
-      .addShSzOverseaPermission(Permission.OL_SZ_LEVEL_2)  // 境外深圳Level2
+      // .addShSzOverseaPermission(Permission.OL_SH_LEVEL_2)  // 境外上海Level2
+      // .addShSzOverseaPermission(Permission.OL_SZ_LEVEL_2)  // 境外深圳Level2
       .addHkPermission(Permission.HK10)   // 港股10档
       // .addHkPermission(Permission.SHHK5)  // 沪港通5档
       // .addHkPermission(Permission.SZHK5)  // 深港通5档
@@ -79,7 +74,6 @@ export default class EntryAbility extends UIAbility {
         console.log("onLevelChanged => market:" + market + ", status:" + status)
       }
     })
-    console.log("test:" + TextUtils.isEmpty("name"))
   }
 
   onDestroy() {
