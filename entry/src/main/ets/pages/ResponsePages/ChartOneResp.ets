@@ -29,7 +29,6 @@ struct ChartOneResponse {
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })
-
   }
 
   private intervalId?: number
@@ -37,31 +36,37 @@ struct ChartOneResponse {
     for (let keyValue of Object.entries(this.param)) {
       Reflect.set(this.request, keyValue[0], keyValue[1]);
     }
-    let date = new Date()
-    let beginTime = date.getTime()
     this.request.send({
       onSuccess: (resp: ChartResp) => {
-        let date = new Date()
-        let endTime = date.getTime()
-        console.info('cost ' + (endTime - beginTime))
         this.message = resp.toString();
         console.info("市场交易时间：" + resp.systemDatetime)
         if (resp.tradeDates) {
           console.info("日期列表：" + resp.tradeDates.convertToArray()[0])
         }
-        console.info("总点数：" + resp.tickCount)
+        console.info("连续竞价总点数：" + resp.tickCount)
+        console.info("盘后交易总点数：" + resp.afTickCount)
         console.info("交易时间段：" + resp.timezones)
         if (resp.referencePrices){
           resp.referencePrices.forEach((key, value) => {
-            console.info("价格：" + key)
-            console.info("时间：" + value)
+            console.info(`价格:${key}==时间:${value}`)
           })
         }
         if (resp.OHLCItems) {
           for (let i = 0; i < resp.OHLCItems.length; i++) {
-            console.info("量比：" + resp.OHLCItems.convertToArray()[i].volumeRatio)
+            let str = resp.OHLCItems.convertToArray()[i]
+            console.info(`交易时间:${str.datetime}==开盘价:${str.openPrice}==最高价:${str.highPrice}==最低价:${str.lowPrice}==收盘价:${str.closePrice}==交易量:${str.tradeVolume}==均价:${str.averagePrice}==参考价/昨收价:${str.referencePrice}==成交额:${str.amount}==红绿柱MD值(仅指数)${str.rgbar}==持仓量:${str.openInterest}==基金净值:${str.IOPV}==基金净值参考价:${str.referenceIOPVPrice}==量比:${ str.volumeRatio}==总委买:${str.entrustBuyVolume}==总委卖:${str.entrustSellVolume}==委差:${str.entrustDiff}`)
           }
-
+        }
+        if (resp.AFItems){
+          for (let i = 0; i < resp.AFItems.length; i++) {
+            let str = resp.AFItems.convertToArray()[i]
+            console.info(`交易时间:${str.datetime}==开盘价:${str.openPrice}==最高价:${str.highPrice}==最低价:${str.lowPrice}==收盘价:${str.closePrice}==交易量:${str.tradeVolume}==均价:${str.averagePrice}`)
+          }
+        }
+        if (resp.referenceIOPVPrices) {
+          resp.referenceIOPVPrices.forEach((key,value)=>{
+            console.info(`价格:${key}==时间:${value}`)
+          })
         }
       },
       onFail: (err: ErrorInfo) => {

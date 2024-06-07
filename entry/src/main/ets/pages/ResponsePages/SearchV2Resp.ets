@@ -20,7 +20,9 @@ struct SearchReqV2Response {
         .margin({ bottom: 5 })
         .fontSize(20)
         .border({ width: 2 })
-        .width('90%')
+        .width('90%').onClick((event)=>{
+        console.info("onClick")
+      })
       Scroll() {
         Text(this.message)
           .width('90%')
@@ -42,20 +44,13 @@ struct SearchReqV2Response {
         let date = new Date()
         let endTime = date.getTime()
         console.info('cost ' + (endTime - beginTime))
-        this.message = resp.toString();
+        // this.message = resp.toString();
         if (resp.items) {
-          console.log("股票代码：" + resp.items.convertToArray()[0].code)
-          console.log("股票名称：" + resp.items.convertToArray()[0].name)
-          console.log("次类别：" + resp.items.convertToArray()[0].subtype)
-          console.log("拼音：" + resp.items.convertToArray()[0].pinYin)
-          console.log("市场别：" + resp.items.convertToArray()[0].market)
-          console.log("沪港通标签：" + resp.items.convertToArray()[0].hh)
-          console.log("深港通标签：" + resp.items.convertToArray()[0].hz)
-          console.log("st：" + resp.items.convertToArray()[0].st)
-          console.log("长名称：" + resp.items.convertToArray()[0].longName)
-          console.log("长名称首字母：" + resp.items.convertToArray()[0].longPinYin)
-          console.log("股票代码（不含市场后缀）：" + resp.items.convertToArray()[0].ID)
-          console.log("股票名称（去除文字间空格的股票名称）：" + resp.items.convertToArray()[0].name2)
+          for (let i = 0; i < resp.items.length; i++) {
+            let str = resp.items.convertToArray()[i]
+            // console.info(`股票代码:${str.code}==股票名称:${str.name}==次类别${str.subtype}==拼音:${str.pinYin}==市场别:${str.market}==沪港通标签:${str.hh}==深港通标签:${str.hz}==st:${str.st}==长名称:${str.longName}==长名称首字母:${str.longPinYin}==股票代码（不含市场后缀）:${str.ID}==股票名称（去除文字间空格的股票名称）:${str.name2}`)
+
+          }
         }
         else {
           console.error("接口返回数据为空！！！")

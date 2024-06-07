@@ -6,7 +6,7 @@ import { StockTableManager2 ,ErrorInfo} from 'SseCore'
 struct SearchReqV2 {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "搜索V2-sh",request: "SearchReqV2",param:{keyword:"0", searchLocal:true,limit:20,categories:['sh']}},
+    {title: "搜索V2-sh",request: "SearchReqV2",param:{keyword:"0", searchLocal:true,limit:10000,categories:['sh']}},
     {title: "搜索V2-sz",request: "SearchReqV2",param:{keyword:"0", searchLocal:true,limit:20,categories:['sz']}},
     {title: "搜索V2-bz",request: "SearchReqV2",param:{keyword:"0", searchLocal:true,limit:20,categories:['bz']}},
     {title: "搜索V2-csi",request: "SearchReqV2",param:{keyword:"0", searchLocal:true,limit:20,categories:['csi']}},
