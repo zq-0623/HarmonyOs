@@ -1,23 +1,16 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import {SseConfig,SseSDK,Permission,RegisterReq, L2TickEntrustResp,IPush, MQTTManager, SubscribeType,
-  L2TickRestoreResp} from 'SseCore';
+import {SseConfig,SseSDK,Permission,RegisterReq, } from 'SseCore';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
-import { SpUtils } from '../util/SpUtils';
-import fs from '@ohos.file.fs';
-import { Log } from '@abner/log/src/main/ets/Log';
-import { TextUtils } from 'SseCore/src/main/ets/b/b4/t4';
-import { FileUtils } from 'SseCore/src/main/ets/b/b4/v4';
+
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let sseConfig: SseConfig = new SseConfig()
     let testfile: string = "test.txt"
-    FileUtils.saveFile("console",testfile)
-    SpUtils.getInstance(this.context);
     sseConfig.setContext(this.context).setAppkey("RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=");
     SseSDK.setConfig(sseConfig);
     SseSDK.setDebug(true,true);
@@ -79,7 +72,6 @@ export default class EntryAbility extends UIAbility {
         console.log("onLevelChanged => market:" + market + ", status:" + status)
       }
     })
-    console.log("test:" + TextUtils.isEmpty("name"))
   }
 
   onDestroy() {
@@ -107,12 +99,10 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    SseSDK.onForeground();  // 当APP进入前台时，调用此方法，SDK会自动恢复订阅
   }
 
   onBackground() {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
-    SseSDK.onBackground()  // 当APP进入后台时，调用此方法，SDK会自动断线解除订阅推送
   }
 }

@@ -53,7 +53,6 @@
     "pages/RequestPages/VolumeReq",
     "pages/RequestPages/L2TickEntrustReq",
     "pages/RequestPages/L2TickRestoreReq",
-    "pages/RequestPages/TCPPush",
 
     "pages/ResponsePages/SearchResp",
     "pages/ResponsePages/SearchV2Resp",
@@ -100,16 +99,6 @@
     "pages/ResponsePages/PriceVolumeResp",
     "pages/ResponsePages/L2TickEntrustResp",
     "pages/ResponsePages/L2TickRestoreResp",
-    "pages/ResponsePages/TcpResponsePages/TCPQuoteResp",
-    "pages/ResponsePages/TcpResponsePages/TCPchartResp",
-    "pages/ResponsePages/TcpResponsePages/TCPchart5Resp",
-    "pages/ResponsePages/TcpResponsePages/TCPtickResp",
-    "pages/ResponsePages/TcpResponsePages/TCPTickDetailResp",
-    "pages/ResponsePages/TcpResponsePages/TCPTickEntrustResp",
-    "pages/ResponsePages/TcpResponsePages/TCPTickRestoreResp",
-    "pages/ResponsePages/TcpResponsePages/TCPThousandsResp",
-    "pages/ResponsePages/TcpResponsePages/TCPQxResp",
-    "pages/ResponsePages/TcpResponsePages/TCPAllResp",
     "pages/RequestPages/SaveLog"
   ]
 }
