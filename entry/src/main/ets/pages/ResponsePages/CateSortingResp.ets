@@ -45,7 +45,7 @@ struct CateSortingResponse {
         if (resp.list && resp.list.length > 0) {
           for (let i = 0; i < resp.list.length;i++){
             let str = resp.list.convertToArray()[i]
-            console.info(`交易状态:${str.status}==代码:${str.id}==名称:${str.name}==市场:${str.market}==子类别:${str.subtype}==交易时间:${str.datetime}最新价:${str.lastPrice}==最高价:${str.highPrice}==昨收价:${str.preClosePrice}==昨结价(期权期货):${str.presetPrice}==涨跌:${str.change}==涨跌幅:${str.changeRate}==涨跌比率:${str.changeRate}==总量:${str.volume}==当前成交量:${str.nowVolume}==换手率:${str.turnoverRate}==前5日涨跌幅:${str.changeRate5}`)
+            console.info(`交易状态:${str.status}==代码:${str.id}==名称:${str.name}==市场:${str.market}==子类别:${str.subtype}==交易时间:${str.datetime}==最新价:${str.lastPrice}==最高价:${str.highPrice}==昨收价:${str.preClosePrice}==昨结价(期权期货):${str.presetPrice}==涨跌:${str.change}==涨跌幅:${str.changeRate}==涨跌比率:${str.changeRate}==总量:${str.volume}==当前成交量:${str.nowVolume}==换手率:${str.turnoverRate}==前5日涨跌幅:${str.changeRate5}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}`)
           }
         }
         if (resp.addValueModel && resp.addValueModel.length > 0) {

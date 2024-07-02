@@ -7,12 +7,12 @@ struct PushType {
   @State  myParams: Object = router.getParams();
   requestList:Array<ListRequestType> = [
     {title: "快照推送",request: "QuotePush",param:{code:"600000.sh"}},
-    {title: "分时走势推送",request: "ChartPush",param:{code:"600000.sh"}},
+    {title: "分时走势推送",request: "ChartPush",param:{code:"688223.sh"}},
     {title: "五日走势推送",request: "Chart5Push",param:{code:"000002.sz"}},
     {title: "分时明细推送",request: "TickPush",param:{code:"000002.sz,600000.sh"}},
     {title: "逐笔明细推送",request: "TickDetailPush",param:{code:"000002.sz"}},
-    {title: "逐笔委托推送",request: "TickEntrustPush",param:{code:"000982.sz"}},
-    {title: "逐笔还原推送",request: "TickRestorePush",param:{code:"301377.sz"}},
+    {title: "逐笔委托推送",request: "TickEntrustPush",param:{code:"002607.sz"}},
+    {title: "逐笔还原推送",request: "TickRestorePush",param:{code:"002607.sz"}},
     {title: "千档推送",request: "ThousandsPush",param:{code:"301377.sz"}},
     {title: "全息推送",request: "QxPush",param:{code:"000002.sz$8050$8040"}},
     {title: "推送全部类型",request: "AllPush",param:{code:"600000.sh"}},

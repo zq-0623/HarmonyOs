@@ -6,9 +6,9 @@
         "type": "HarmonyOS",
         "material": {
           "certpath": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.cer",
-          "storePassword": "0000001BE40ED9BDCBD7D36324E58E49C089AFDF997AC3A80D922377229B0ACEB3FE0EDD92C7DC9B96D96D",
+          "storePassword": "0000001B7BF7E006767B6DB55589E76349532B0A0F1DFD9D25C1DCCE307E020C9C0C84DCBDFA47ED7E1E4A",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B790D2AD2CC5E65090C7051CCB9F485FE1B1B26EC7F117FD45C07AEEF369947AB9249F1BB17DCCA",
+          "keyPassword": "0000001B49B4E1D6D1F943C5EBC1454CEA0F3D985A5F540691CE51E2FA7F0580CABB8C6756C1F8DA2BE255",
           "profile": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p12"
@@ -19,9 +19,8 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": "4.1.0(11)",
-        "compatibleSdkVersion": "4.1.0(11)",
-        "runtimeOS": "HarmonyOS",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS"
       }
     ],
     "buildModeSet": [
