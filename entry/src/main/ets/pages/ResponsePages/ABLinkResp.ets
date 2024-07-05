@@ -1,5 +1,6 @@
 import router from '@ohos.router'
 import { ABLinkReq,ErrorInfo,ABLinkResp,Request} from 'SseCore'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 let RequestMap = {
   "ABLinkReq": new ABLinkReq(),
 } as Record<string, Request>
@@ -39,6 +40,7 @@ struct ABLinkResponse {
         if (resp.item) {
           let str = resp.item
           console.info(`代码:${str.code}==名称:${str.name}==市场:${str.market}==类别:${str.subtype}==最新价:${str.lastPrice}==昨收价:${str.preClosePrice}==涨跌:${str.change}==涨幅:${str.changeRate}==	AB溢价率:${str.premiumRateAB}==BA溢价率:${str.premiumRateBA}`)
+          expect(str.code).assertEqual()
         }
       },
       onFail: (err: ErrorInfo) => {

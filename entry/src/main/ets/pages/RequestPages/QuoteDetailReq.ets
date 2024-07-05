@@ -6,7 +6,7 @@ import { addValue } from '../../common/AddValueCustomField'
 struct QuoteDetailReq {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "请求快照-sh",request: "QuoteDetailReq",param:{code:"159995.sz"}},
+    {title: "请求快照-sh",request: "QuoteDetailReq",param:{code:"600000.sh"}},
     {title: "请求快照-sh3002",request: "QuoteDetailReq",param:{code:"10006406.sh"}},
     {title: "请求快照-sz",request: "QuoteDetailReq",param:{code:"300133.sz"}},
     {title: "请求快照-sz3002",request: "QuoteDetailReq",param:{code:"90002507.sz"}},

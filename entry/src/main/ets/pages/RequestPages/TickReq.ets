@@ -4,7 +4,7 @@ import router from '@ohos.router'
 struct TickReq {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "请求明细-SH1001",request: "TickReq",param:{stockId:"600000.sh", param:"0,100,-1", subtype:"1001"}},
+    {title: "请求明细-SH1001",request: "TickReq",param:{stockId:"600000.sh", param:"931,100,-1", subtype:"1001"}},
     {title: "请求明细-SH1002",request: "TickReq",param:{stockId:"900948.sh", param:"0,100,-1", subtype:"1002"}},
     {title: "请求明细-SH1006",request: "TickReq",param:{stockId:"688009.sh", param:"931,100,2", subtype:"1006"}},
     {title: "请求明细-SH1100",request: "TickReq",param:{stockId:"513330.sh", param:"0,100,-1", subtype:"1100"}},
