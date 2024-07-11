@@ -46,7 +46,8 @@ struct TCPchartResponse {
       if (resp.AFItems) {
         for (let j = 0; j < resp.AFItems.length; j++) {
           let str:OHLCItem = resp.AFItems[j]
-          console.info(`时间:${str.datetime}==收盘价:${str.closePrice}==参考价/昨收价:${str.referencePrice}`)
+          // ==盘后成交量:${str.afterHoursVolume}==盘后成交额:${str.afterHoursAmount}  不支持
+          console.info(`时间:${str.datetime}==收盘价:${str.afterHoursVolume}==参考价/昨收价:${str.referencePrice}`)
         }
       }
       if (resp.tradeDates) {

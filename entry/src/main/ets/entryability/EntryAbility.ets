@@ -16,6 +16,7 @@ export default class EntryAbility extends UIAbility {
     sseConfig.setContext(this.context).setAppkey("RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=");
     SseSDK.setConfig(sseConfig);
     SseSDK.setDebug(true,true);
+    SseSDK.getHid();
     SseSDK.permission()
       // SseSDK.permission().setLevel(Permission.LEVEL_1)   // 1、统一设置沪深L1权限，不给默认会有L1的权限
       // .addShSzPermission(Permission.SH_LEVEL_1)  // 2、沪L1权限

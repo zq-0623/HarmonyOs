@@ -1,4 +1,5 @@
 import router from '@ohos.router'
+import { expect } from '@ohos/hypium'
 import { DRLinkReq,ErrorInfo,DRLinkResp,Request } from 'SseCore'
 let RequestMap = {
   "DRLinkReq": new DRLinkReq(),
@@ -51,6 +52,7 @@ struct DRLinkResponse {
           console.info("涨幅：" + resp.item.changeRate)
           console.info("涨跌：" + resp.item.change)
           console.info("联动代码溢价率：" + resp.item.premiumRate)
+          expect(resp.item.subtype).assertEqual("1001")
         }
       },
       onFail: (err: ErrorInfo) => {

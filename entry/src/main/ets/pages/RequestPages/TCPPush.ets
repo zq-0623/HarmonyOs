@@ -7,7 +7,7 @@ struct PushType {
   @State  myParams: Object = router.getParams();
   requestList:Array<ListRequestType> = [
     {title: "快照推送",request: "QuotePush",param:{code:"600000.sh"}},
-    {title: "分时走势推送",request: "ChartPush",param:{code:"688223.sh"}},
+    {title: "分时走势推送",request: "ChartPush",param:{code:"300059.sz"}},
     {title: "五日走势推送",request: "Chart5Push",param:{code:"000002.sz"}},
     {title: "分时明细推送",request: "TickPush",param:{code:"000002.sz,600000.sh"}},
     {title: "逐笔明细推送",request: "TickDetailPush",param:{code:"000002.sz"}},
