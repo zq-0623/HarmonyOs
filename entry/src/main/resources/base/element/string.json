@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "mqttTest"
+    },
+    {
+      "name": "smarthome",
+      "value": "Smarthome"
+    },
+    {
+      "name": "emqx",
+      "value": "Emqx"
     }
   ]
 }

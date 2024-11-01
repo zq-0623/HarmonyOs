@@ -5,7 +5,7 @@
  * FileName:TCPtickResp
  */
 import router from '@ohos.router'
-import { IPush, SseSDK, MQTTManager,SubscribeType,TickResp, Permission } from 'SseCore';
+import { IPush, SseSDK, MQTTManager,SubscribeType,TickResp, Permission, TickItem } from 'SseCore';
 @Entry
 @Component
 struct TCPtickResponse {
@@ -37,12 +37,12 @@ struct TCPtickResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.tickPush  = {push:(code,resp:TickResp) => {
+    iPush.tickPush  = {push:(code:string,resp:TickResp) => {
       this.message = resp.toString();
       console.info("头里返回的数据:" + resp.headerParams)
       if (resp.tickItems) {
         for (let i = 0; i < resp.tickItems.length; i++) {
-          let str = resp.tickItems.convertToArray()[i]
+          let str:TickItem = resp.tickItems.convertToArray()[i]
           console.info(`买卖方向：${str.transactionStatus}==交易时间：${str.transactionTime}==交易量：${str.singleVolume}==成交价格：${str.transactionPrice}`)
         }
         console.error("买卖方向***************第一次订阅*********************")

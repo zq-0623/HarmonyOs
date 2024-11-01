@@ -10,7 +10,7 @@ struct QuoteDetailReq {
     {title: "请求快照-sh3002",request: "QuoteDetailReq",param:{code:"10006406.sh"}},
     {title: "请求快照-sz",request: "QuoteDetailReq",param:{code:"300133.sz"}},
     {title: "请求快照-sz3002",request: "QuoteDetailReq",param:{code:"90002507.sz"}},
-    {title: "请求快照-hk",request: "QuoteDetailReq",param:{code:"00973.hk"}},
+    {title: "请求快照-hk",request: "QuoteDetailReq",param:{code:"00700.hk"}},
     {title: "请求快照-bz",request: "QuoteDetailReq",param:{code:"836433.bz"}},
     {title: "请求快照-csi",request: "QuoteDetailReq",param:{code:"000902.csi"}},
     {title: "请求快照-bj",request: "QuoteDetailReq",param:{code:"830899.bj",}},

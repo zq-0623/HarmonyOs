@@ -1,5 +1,4 @@
 import router from '@ohos.router';
-import { SpUtils } from '../util/SpUtils';
 
 // import { SpUtils } from '../util/SpUtils';
 @Entry

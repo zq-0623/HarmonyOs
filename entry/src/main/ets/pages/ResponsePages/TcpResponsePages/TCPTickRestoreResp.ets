@@ -7,7 +7,8 @@
 import router from '@ohos.router'
 import { IPush, SseSDK, MQTTManager,SubscribeType,L2TickDetailResp, L2TickEntrustResp,
   L2TickRestoreResp,
-  Permission} from 'SseCore';
+  Permission,
+  TickDetailItem} from 'SseCore';
 @Entry
 @Component
 struct TCPTickRestoreResponse {
@@ -39,13 +40,13 @@ struct TCPTickRestoreResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.tickRestorePush = {push:(code,resp:L2TickRestoreResp) => {
+    iPush.tickRestorePush = {push:(code:string,resp:L2TickRestoreResp) => {
       this.message = resp.toString();
       if (resp.items){
         console.log("起始引索:" + resp.startIndex)
         console.log("结束引索:" + resp.endIndex)
         for (let i = 0; i < resp.items.length; i++) {
-          let str = resp.items[i]
+          let str:TickDetailItem = resp.items[i]
           console.info(`交易时间:${str.transactionTime}买卖标识:${str.transactionStatus}==交易量:${str.singleVolume}==成交价格:${str.transactionPrice}==索引:${str.index}==买委托序号:${str.bn}==卖委托序号:${str.on}==买委托量:${str.bq}==卖委托量:${str.oq}==买方剩余量:${str.br}==卖方剩余量:${str.sr}`)
         }
       }

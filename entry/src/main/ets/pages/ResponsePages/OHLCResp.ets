@@ -1,8 +1,6 @@
 import router from '@ohos.router'
-import {  OHLCReq,ErrorInfo,OHLCResp,Request } from 'SseCore'
-let RequestMap = {
-  "OHLCReq": new OHLCReq(),
-} as Record<string, Request>
+import { OHLCPriceAdjustedMode,RequestType,OHLCPeriod,OHLCReq,ErrorInfo,OHLCResp,Request, FQItem } from 'SseCore'
+let RequestMap = { "OHLCReq": new OHLCReq(), } as Record<string, Request>
 @Entry
 @Component
 struct OHLCResponse {
@@ -13,39 +11,9 @@ struct OHLCResponse {
   private param: Record<string, Object> = {};
   build() {
     Column() {
-      Text(this.title)
-        .padding(5)
-        .margin({ bottom: 5 })
-        .fontSize(20)
-        .border({ width: 2 })
-        .width('90%')
-      // Button("set Level").onClick(() => {
-      //   SseSDK.permission().clearHkPermission()
-      //   SseSDK.permission().addHkPermission(Permission.HKD1)
-      //   let ohlcReq = new OHLCReq()
-      //   ohlcReq.code = '00939.hk';
-      //   ohlcReq.subtype = '1010';
-      //   ohlcReq.period = OHLCPeriod.OHLCPeriodMin1
-      //   ohlcReq.priceAdjustedMode = OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone
-      //   ohlcReq.date = "20240415130000"
-      //   ohlcReq.requestType = RequestType.RequestTypeOlder
-      //   ohlcReq.send({
-      //     onSuccess:(resp:OHLCResp)=>{
-      //       if (resp.OHLCItems && resp.OHLCItems.length > 0) {
-      //         for (let i = 0; i < resp.OHLCItems.length; i++) {
-      //           let res = resp.OHLCItems.convertToArray()
-      //           let strOHLCItem = `交易时间：${res[i].datetime}==开盘价：${res[i].openPrice}==最高价：${res[i].highPrice}==最低价：${res[i].lowPrice}==收盘价：${res[i].closePrice}==交易量：${res[i].tradeVolume}==均价：${res[i].averagePrice}==参考价/昨收价：${res[i].referencePrice}==成交额：${res[i].amount}==持仓量：${res[i].openInterest}==盘后成交量：${res[i].afterHoursVolume}==盘后成交额：${res[i].afterHoursAmount}==盘后成交额：${res[i].afterHoursAmount}`;
-      //           console.info(strOHLCItem);
-      //         }
-      //       }
-      //     }
-      //   })
-      // }).width('80%')
+      Text(this.title).padding(5).margin({ bottom: 5 }).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15, right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
+        Text(this.message).width('90%').margin({ left: 15, right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A)
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })

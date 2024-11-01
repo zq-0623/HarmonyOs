@@ -11,7 +11,7 @@ import { OHLCPeriod, OHLCPriceAdjustedMode, RequestType } from 'SseCore'
 struct forwardDateOHLCReq {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "给定日期之前300根-SH1001",request: "OHLCReq",param:{code:"600010.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,date:"202404230932",requestType:RequestType.RequestTypeOlder,count:10}},
+    {title: "给定日期之前300根-SH1001",request: "OHLCReq",param:{code:"600010.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,date:"20240724150000",requestType:RequestType.RequestTypeOlder,count:10}},
     {title: "给定日期之前300根-SH1002",request: "OHLCReq",param:{code:"900948.sh", subtype:"1002",period:OHLCPeriod.OHLCPeriodDay,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,date:"202404",requestType:RequestType.RequestTypeOlder,count:10}},
     {title: "给定日期之前300根-SH1006",request: "OHLCReq",param:{code:"688009.sh", subtype:"1006",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,date:"20240414",requestType:RequestType.RequestTypeOlder,count:10}},
     {title: "给定日期之前300根-SH1100",request: "OHLCReq",param:{code:"513330.sh", subtype:"1100",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,date:"20240414",requestType:RequestType.RequestTypeOlder,count:10}},

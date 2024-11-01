@@ -25,7 +25,7 @@ struct QuoteReq {
     {title: "自选单市场自定义栏位-sh",request: "QuoteReq",param:{codes:["600010.sh","900924.sh","688009.sh","513330.sh", "204001.sh","000001.sh","10006419.sh"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
     {title: "自选单市场自定义栏位-sz",request: "QuoteReq",param:{codes:["000001.sz","200625.sz","300315.sz","159792.sz", "131810.sz","399317.sz","90002507.sz"],quoteColumns:[QuoteFiled.quoteCustoms[2]],addValueColumns:addValue.addValueColumns}},
     {title: "自选单市场自定义栏位-bz",request: "QuoteReq",param:{codes:["836433.bz","821001.bz","899050.bz"],quoteColumns:QuoteFiled.quoteCustoms}},
-    {title: "自选单市场自定义栏位-hk",request: "QuoteReq",param:{codes:["00020.hk","03033.hk","04246.hk","HSI.hk","61759.hk","23140.hk"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选单市场自定义栏位-hk",request: "QuoteReq",param:{codes:["01468.hk","00020.hk","03033.hk","02800.hk","40475.hk","05132.hk","HSI.hk","HSCEI.hk","66010.hk","65843.hk","24022.hk","25750.hk"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
     {title: "自选单市场自定义栏位-csi",request: "QuoteReq",param:{codes:["000902.csi","930903.csi","932000.csi"],quoteColumns:QuoteFiled.quoteCustoms}},
     {title: "自选单市场自定义栏位-bj",request: "QuoteReq",param:{codes:["830899.bj","830806.bj","899001.bj"],quoteColumns:QuoteFiled.quoteCustoms}},
     {title: "自选单市场自定义栏位-bk",request: "QuoteReq",param:{codes:["E01039.bk","F10031.bk","A20090.bk","D10032.bk","D20167.bk","J10570.bk","I10034.bk","H10051.bk","G10076.bk"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},

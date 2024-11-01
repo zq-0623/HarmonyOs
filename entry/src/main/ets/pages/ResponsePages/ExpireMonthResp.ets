@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { ExpireMonthReq, ErrorInfo,ExpireMonthResp,Request} from 'SseCore'
+import { ExpireMonthReq, ErrorInfo,ExpireMonthResp,Request, ExpireMonthItem} from 'SseCore'
 let RequestMap = {
   "ExpireMonthReq": new ExpireMonthReq(),
 } as Record<string, Request>
@@ -13,17 +13,9 @@ struct ExpireMonthResponse {
   private param: Record<string, Object> = {};
   build() {
     Column() {
-      Text(this.title)
-        .padding(5)
-        .margin({ bottom: 5 })
-        .fontSize(20)
-        .border({ width: 2 })
-        .width('90%')
+      Text(this.title).padding(5).margin({ bottom: 5 }).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15, right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
+        Text(this.message).width('90%').margin({ left: 15, right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A)
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })
@@ -42,8 +34,10 @@ struct ExpireMonthResponse {
         console.info('cost ' + (endTime - beginTime))
         this.message = resp.toString();   // 输出response到手机屏幕  string类型
         if (resp.expireMonths) {
-          console.info("交割月：" + resp.expireMonths.convertToArray()[0].time)
-          console.info("剩余天数：" + resp.expireMonths.convertToArray()[0].dayCount)
+          for (let i = 0; i < resp.expireMonths.length; i++) {
+            let str:ExpireMonthItem = resp.expireMonths.convertToArray()[i]
+            console.info(`交割月：${str.time}==剩余天数：${str.dayCount}`)
+          }
         }
         else {
           console.info("数据为空！！！")

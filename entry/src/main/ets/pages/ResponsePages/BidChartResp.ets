@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { BidChartReq,ErrorInfo,BidChartResp,Request } from 'SseCore'
+import { BidChartReq,ErrorInfo,BidChartResp,Request, BidItem } from 'SseCore'
 let RequestMap = {
   "BidChartReq": new BidChartReq(),
 } as Record<string, Request>
@@ -13,17 +13,9 @@ struct BidChartResponse {
   private param: Record<string, Object> = {};
   build() {
     Column() {
-      Text(this.title)
-        .padding(5)
-        .margin({ bottom: 5 })
-        .fontSize(20)
-        .border({ width: 2 })
-        .width('90%')
+      Text(this.title).padding(5).margin({ bottom: 5 }).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15, right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
+        Text(this.message).width('90%').margin({ left: 15, right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A)
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })
@@ -45,7 +37,7 @@ struct BidChartResponse {
         console.info("总点数：" + resp.tickCount)
         if (resp.bidItems && resp.bidItems.length > 0)
           for (let i = 0; i < resp.bidItems.length; i++) {
-            let str = resp.bidItems.convertToArray()[i]
+            let str:BidItem = resp.bidItems.convertToArray()[i]
             console.info(`时间:${str.datetime}==最新价:${str.lastPrice}==参考价:${str.referencePrice}==买一:${str.buyVolume1}==买二:${str.buyVolume2}==卖一:${str.sellVolume1}==卖二:${str.sellVolume2}`)
           }
         },

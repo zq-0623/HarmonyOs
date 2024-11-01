@@ -49,6 +49,8 @@ struct ApiList {
     {title: "L2plus逐笔委托",request: "L2TickEntrustReq"},
     {title: "L2plus逐笔还原",request: "L2TickRestoreReq"},
     {title: "推送",request: "Push"},
+    {title: "F10资讯通用接口",request: "F10"},
+    {title: "官方MQTT测试",request: "MQTT"},
   ]
   build() {
     Column() {
@@ -191,6 +193,12 @@ struct ApiList {
                 }
                 if (value.request === "L2TickRestoreReq") {
                   router.pushUrl({url: 'pages/RequestPages/L2TickRestoreReq'})
+                }
+                if (value.request === "F10") {
+                  router.pushUrl({url: 'pages/RequestPages/F10V2Req'})
+                }
+                if (value.request === "MQTT") {
+                  router.pushUrl({url: 'pages/Huawei_mqtt_Test/emqxPage'})
                 }
               }).align(Alignment.Center).width('80%');
             }

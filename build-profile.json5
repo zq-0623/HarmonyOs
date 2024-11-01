@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.cer",
-          "storePassword": "0000001B7BF7E006767B6DB55589E76349532B0A0F1DFD9D25C1DCCE307E020C9C0C84DCBDFA47ED7E1E4A",
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.cer",
+          "storePassword": "0000001B50EF3E42BCCDD2485090E5738E6A4962719533192E23772B35035E45CA71789A011D52E4203E0D",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B49B4E1D6D1F943C5EBC1454CEA0F3D985A5F540691CE51E2FA7F0580CABB8C6756C1F8DA2BE255",
-          "profile": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p7b",
+          "keyPassword": "0000001BB2D103B1879A1FFCDF693C096F96DD11D3A0731D114B6655B1C7E0148EBFE5517F9B7A92949C8B",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\knapp\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p12"
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\default_SseHarmonyOS_A8Vm0EdJUb6tqFM8iNvJzGTs9egRV2-DhpQBZKlXJeg=.p12"
         }
       }
     ],
@@ -20,7 +20,17 @@
         "name": "default",
         "signingConfig": "default",
         "compatibleSdkVersion": "5.0.0(12)",
-        "runtimeOS": "HarmonyOS"
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "arkOptions": {
+            "buildProfileFields": {
+              "bid": 168
+            }
+          },
+          "strictMode": {
+            "useNormalizedOHMUrl": true
+          }
+        }
       }
     ],
     "buildModeSet": [

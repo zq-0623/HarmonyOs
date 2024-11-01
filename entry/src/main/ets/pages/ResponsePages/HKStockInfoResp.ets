@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { HKStockInfoReq,ErrorInfo,HKStockInfoResp,Request, HKOddInfoItem } from 'SseCore'
+import { HKStockInfoReq,ErrorInfo,HKStockInfoResp,Request, HKOddInfoItem, HKStockInfoItem } from 'SseCore'
 let RequestMap = {
   "HKStockInfoReq": new HKStockInfoReq(),
 } as Record<string, Request>
@@ -48,7 +48,7 @@ struct HKStockInfoResponse {
               console.info(`碎股时间:${str.datetime}==碎股订单编号:${str.orderId}==碎股价格:${str.price}==碎股订单数量:${str.orderQty}==碎股经纪人编号:${str.brokerId}==碎股买卖方向:${str.side}`)
             }
           }
-          let info = resp.item
+          let info:HKStockInfoItem = resp.item
           console.info(`vcm时间:${info.vcmDatetime}==市场调节机制起始时间:${info.vcmStartTime}==市场调节机制结束时间:${info.vcmEndTime}==市场调节机制参考价:${info.vcmRefPrice}==市场调节下限价:${info.vcmLowerPrice}==市场调节上限价${info.vcmUpperPrice}==集合竞价时间:${info.casDatetime}==未能配对买卖盘的方向:${info.casOrdImbQty}==未能配对买卖盘的数量:${info.casOrdImbQty}==参考价格:${info.casRefPrice}==集合竞价状态:${info.callAuctionStatus}==虚拟参考价:${info.virtualRefPrice}==虚拟未匹配:${info.virtualOrdImbQty}==买盘上下限价格区间:${info.buyPriceRange}==卖盘上下限价格区间:${info.sellPriceRange}`)
         }
       },

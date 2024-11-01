@@ -1,8 +1,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import {SseConfig,SseSDK,Permission,RegisterReq, L2TickEntrustResp,IPush, MQTTManager, SubscribeType,
-  L2TickRestoreResp} from 'SseCore';
+import {SseConfig,SseSDK,Permission,RegisterReq,SiteManagerUtils,PingReq,PingResp } from 'SseCore';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 import { SpUtils } from '../util/SpUtils';
@@ -28,9 +27,9 @@ export default class EntryAbility extends UIAbility {
       // .addShSzOverseaPermission(Permission.OL_LEVEL_1)  // 境外沪深Level1权限必须一起设置，不支持单独设置
       // .addShSzOverseaPermission(Permission.OL_SH_LEVEL_2)  // 境外上海Level2
       // .addShSzOverseaPermission(Permission.OL_SZ_LEVEL_2)  // 境外深圳Level2
-      .addHkPermission(Permission.HK10)   // 港股10档
-      // .addHkPermission(Permission.SHHK5)  // 沪港通5档
-      // .addHkPermission(Permission.SZHK5)  // 深港通5档
+      // .addHkPermission(Permission.HK10)   // 港股10档
+      .addHkPermission(Permission.SHHK5)  // 沪港通5档
+      .addHkPermission(Permission.SZHK5)  // 深港通5档
       // .addHkPermission(Permission.HKA1)   // 港股实时1档
       // .addHkPermission(Permission.SHHK1)  // 沪港通1档
       // .addHkPermission(Permission.SZHK1)  // 深港通1档
@@ -58,6 +57,29 @@ export default class EntryAbility extends UIAbility {
       onSuccess: () => {
         console.info("注册成功")
         console.info("resgister sscuess:" + RegisterReq.toString())
+        SseSDK.printServerIP();  // 打印所有市场的站点信息
+        // let smu = new SiteManagerUtils();
+        // let MarketSiteType = "hka1"
+        // let getSmu = smu.getIpByMarket(MarketSiteType);
+        // console.info("ips:" + getSmu)
+        // let ips: string[] = []
+        //   for (let i = 0; i < getSmu.length; i++) {
+        //     let pingReq = new PingReq();
+        //     pingReq.ip = getSmu[i]
+        //     pingReq.send({
+        //       onSuccess: (resp: PingResp) => {
+        //         ips.push(resp.pingIP)
+        //         console.info(`${MarketSiteType}市场返回的http站点地址：${resp.pingIP}     请求耗时:${resp.costTime}`)
+        //       },
+        //       onFail: (err:ErrorInfo) => {
+        //         console.info("ping onFail:" + err.getMsg());
+        //       }
+        //     });
+        //   }
+        //   setTimeout(()=>{
+        //     smu.setIPByMarket(ips, MarketSiteType);
+        //     SseSDK.printServerIP();
+        //   },500)
         // 等待3s再执行里面的代码
         // setTimeout(() => {
         //   MQTTManager.getInstance().unSubscribe("000002.sz",SubscribeType.TickRestore)
@@ -76,7 +98,6 @@ export default class EntryAbility extends UIAbility {
       }
     })
   }
-
   onDestroy() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }

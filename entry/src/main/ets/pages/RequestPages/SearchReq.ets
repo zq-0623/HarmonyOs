@@ -1,7 +1,7 @@
 import router from '@ohos.router'
 @Entry
 @Component
-struct SearchReq {
+struct SearchReq {   // 在线搜索
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
     {title: "搜索-sh",request: "SearchReq",param:{keyword:"0",categories:['sh'],limit:10}},
@@ -19,18 +19,18 @@ struct SearchReq {
     {title: "搜索-CZCE",request: "SearchReq",param:{keyword:"0",categories:['czce']}},
     {title: "搜索-SHFE",request: "SearchReq",param:{keyword:"0",categories:['shfe']}},
     {title: "搜索-INE",request: "SearchReq",param:{keyword:"0",categories:['ine']}},
-    {title: "搜索-SH1001",request: "SearchReq",param:{keyword:"0",categories:['SH1001']}},
-    {title: "搜索-SZ1001",request: "SearchReq",param:{keyword:"0",categories:['SZ1001']}},
-    {title: "搜索-SH1006",request: "SearchReq",param:{keyword:"0",categories:['SH1006']}},
-    {title: "搜索-SZ1004",request: "SearchReq",param:{keyword:"0",categories:['SZ1004']}},
-    {title: "搜索-SH1100",request: "SearchReq",param:{keyword:"0",categories:['SH1100']}},
-    {title: "搜索-SZ1100",request: "SearchReq",param:{keyword:"0",categories:['SZ1100']}},
-    {title: "搜索-SH1300",request: "SearchReq",param:{keyword:"0",categories:['SH1300']}},
-    {title: "搜索-SZ1300",request: "SearchReq",param:{keyword:"0",categories:['SZ1300']}},
-    {title: "搜索-SH1400",request: "SearchReq",param:{keyword:"0",categories:['SH1400']}},
-    {title: "搜索-SZ1400",request: "SearchReq",param:{keyword:"0",categories:['SZ1400']}},
-    {title: "搜索-SH3002",request: "SearchReq",param:{keyword:"0",categories:['SH3002']}},
-    {title: "搜索-SZ3002",request: "SearchReq",param:{keyword:"0",categories:['SZ3002']}},
+    {title: "搜索-SH1001",request: "SearchReq",param:{keyword:"0",categories:['sh_1001']}},
+    {title: "搜索-SZ1001",request: "SearchReq",param:{keyword:"0",categories:['sz_1001']}},
+    {title: "搜索-SH1006",request: "SearchReq",param:{keyword:"0",categories:['sh_1006']}},
+    {title: "搜索-SZ1004",request: "SearchReq",param:{keyword:"0",categories:['sz_1004']}},
+    {title: "搜索-SH1100",request: "SearchReq",param:{keyword:"0",categories:['sh_1100']}},
+    {title: "搜索-SZ1100",request: "SearchReq",param:{keyword:"0",categories:['sz_1100']}},
+    {title: "搜索-SH1300",request: "SearchReq",param:{keyword:"0",categories:['sh_1300']}},
+    {title: "搜索-SZ1300",request: "SearchReq",param:{keyword:"0",categories:['sz_1300']}},
+    {title: "搜索-SH1400",request: "SearchReq",param:{keyword:"0",categories:['sh_1400']}},
+    {title: "搜索-SZ1400",request: "SearchReq",param:{keyword:"0",categories:['sz_1400']}},
+    {title: "搜索-SH3002",request: "SearchReq",param:{keyword:"0",categories:['sh_3002']}},
+    {title: "搜索-SZ3002",request: "SearchReq",param:{keyword:"0",categories:['sz_3002']}},
     {title: "搜索-SZHK",request: "SearchReq",param:{keyword:"0",categories:['SZHK']}},
     {title: "搜索-shbh",request: "SearchReq",param:{keyword:"0",categories:['shbh']}},
     {title: "搜索-szbh",request: "SearchReq",param:{keyword:"0",categories:['szbh']}},

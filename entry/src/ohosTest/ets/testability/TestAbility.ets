@@ -2,9 +2,13 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-import { Hypium } from '@ohos/hypium';
-import testsuite from '../test/List.test';
 import { Permission,RegisterReq,SseConfig,SseSDK } from 'SseCore';
+import {
+  Hypium
+} from '@ohos/hypium';
+import testsuite
+  from '../../../test/List.test';
+
 
 export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -17,7 +21,7 @@ export default class TestAbility extends UIAbility {
     abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     let sseConfig: SseConfig = new SseConfig()
-    sseConfig.setAppkey("RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=");
+    sseConfig.setContext(this.context).setAppkey("RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=");
     SseSDK.setConfig(sseConfig);
     SseSDK.setDebug(true,true);
     SseSDK.permission().addShSzPermission(Permission.SH_LEVEL_2).addShSzPermission(Permission.SZ_LEVEL_2)
@@ -40,7 +44,7 @@ export default class TestAbility extends UIAbility {
         console.log("onLevelChanged => market:" + market + ", status:" + status)
       }
     })
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+
   }
 
   onDestroy() {

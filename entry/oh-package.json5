@@ -8,6 +8,6 @@
   "version": "1.0.0",
   "dependencies": {
     "SseCore": "file:lib/SseCore.har",
-    "@abner/log": "^1.0.2"
+    "@ohos/mqtt": "^2.0.12"
   }
 }

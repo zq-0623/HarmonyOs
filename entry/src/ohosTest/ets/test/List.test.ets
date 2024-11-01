@@ -1,5 +1,9 @@
-import abilityTest from './Ability.test';
 
-export default function testsuite() {
-  abilityTest();
+import QuoteTest from './TestCases/Quote.test';
+import QuoteDetailTest
+  from './TestCases/QuoteDetail.test';
+
+export   default function QuoteDetail() {
+  QuoteDetailTest();
+  QuoteTest()
 }

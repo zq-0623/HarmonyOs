@@ -7,7 +7,7 @@ import { SectionSortingField } from 'SseCore'
 struct SectionSortingReq {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "板块排行-概念板块",request: "SectionSortingReq",param:{code:CategoryType.CATE_NOTION,ascending:true,field:SectionSortingField.SectionSortingFieldCode}},
+    {title: "板块排行-概念板块",request: "SectionSortingReq",param:{code:CategoryType.CATE_AREA,ascending:true,field:SectionSortingField.SectionSortingFieldChangeRate}},
     {title: "板块排行-地区板块",request: "SectionSortingReq",param:{code: CategoryType.CATE_AREA}},
     {title: "板块排行-行业板块",request: "SectionSortingReq",param:{code: CategoryType.CATE_TRADE}},
     {title: "板块排行-申万二级行业板块",request: "SectionSortingReq",param:{code: CategoryType.TRADE_SW}},

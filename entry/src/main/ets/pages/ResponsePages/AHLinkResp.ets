@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { AHLinkReq,ErrorInfo,AHLinkResp,Request } from 'SseCore'
+import { AHLinkReq,ErrorInfo,AHLinkResp,Request, AHLinkItem } from 'SseCore'
 let RequestMap = {
   "AHLinkReq": new AHLinkReq(),
 } as Record<string, Request>
@@ -13,17 +13,9 @@ struct AHLinkResponse {
   private param: Record<string, Object> = {};
   build() {
     Column() {
-      Text(this.title)
-        .padding(5)
-        .margin({ bottom: 5 })
-        .fontSize(20)
-        .border({ width: 2 })
-        .width('90%')
+      Text(this.title).padding(5).margin({ bottom: 5 }).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15, right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
+        Text(this.message).width('90%').margin({ left: 15, right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A)
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })
@@ -42,13 +34,8 @@ struct AHLinkResponse {
         console.info('cost ' + (endTime - beginTime))
         this.message = resp.toString();   // 输出response到手机屏幕  string类型
         if (resp.item) {
-          console.log("代码：" + resp.item.code)
-          console.log("名称：" + resp.item.name)
-          console.log("最新价：" + resp.item.lastPrice)
-          console.log("昨收价：" + resp.item.preClosePrice)
-          console.log("涨跌幅：" + resp.item.changeRate)
-          console.log("联动代码AH溢价率：" + resp.item.premiumRate)
-          console.log("联动代码HA溢价率：" + resp.item.premiumRateHA)
+          let str:AHLinkItem = resp.item
+          console.info(`代码：${str.code}==名称：${str.name}==最新价：${str.lastPrice}==昨收价：${str.preClosePrice}==涨跌幅：${str.changeRate}==联动代码AH溢价率：${str.premiumRate}==联动代码HA溢价率：${str.premiumRateHA}`)
         }
       },
       onFail: (err: ErrorInfo) => {

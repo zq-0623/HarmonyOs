@@ -5,7 +5,7 @@
  * FileName:TCPThousandsResp
  */
 import router from '@ohos.router'
-import { IPush, SseSDK, MQTTManager,SubscribeType, Permission} from 'SseCore';
+import { IPush, SseSDK, MQTTManager,SubscribeType, Permission, ThousandsData, ThousandsItem} from 'SseCore';
 @Entry
 @Component
 struct TCPThousandsResponse {
@@ -33,18 +33,18 @@ struct TCPThousandsResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.thousandsPush  = {push:(code,data) => {
+    iPush.thousandsPush  = {push:(code:string,data:ThousandsData) => {
       this.message = data.toString();
       console.info(`testData：${data.code}`)
       if (data.buyItems && data.buyItems.length > 0) {
         for (let i = 0; i < data.buyItems.length; i++) {
-          let str = data.buyItems[i]
+          let str:ThousandsItem = data.buyItems[i]
           console.info(`委托价格:${str.price}==委托量:${str.volume}==委托原始价格:${str.originalPrice}==买卖方向:${str.bs}==笔数(委托单子数量):${str.count}`)
         }
       }
       if (data.sellItems && data.sellItems.length > 0) {
         for (let j = 0; j < data.sellItems.length; j++) {
-          let str = data.sellItems[j]
+          let str:ThousandsItem = data.sellItems[j]
           console.info(`委托价格:${str.price}==委托量:${str.volume}==委托原始价格:${str.originalPrice}==买卖方向:${str.bs}==笔数(委托单子数量):${str.count}`)
         }
       }

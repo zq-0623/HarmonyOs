@@ -1,6 +1,5 @@
 import router from '@ohos.router'
-import { expect } from '@ohos/hypium'
-import { DRLinkReq,ErrorInfo,DRLinkResp,Request } from 'SseCore'
+import { DRLinkReq,ErrorInfo,DRLinkResp,Request, DRLinkItem } from 'SseCore'
 let RequestMap = {
   "DRLinkReq": new DRLinkReq(),
 } as Record<string, Request>
@@ -14,17 +13,9 @@ struct DRLinkResponse {
   private param: Record<string, Object> = {};
   build() {
     Column() {
-      Text(this.title)
-        .padding(5)
-        .margin({ bottom: 5 })
-        .fontSize(20)
-        .border({ width: 2 })
-        .width('90%')
+      Text(this.title).padding(5).margin({ bottom: 5 }).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15, right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
+        Text(this.message).width('90%').margin({ left: 15, right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A)
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })
@@ -43,16 +34,9 @@ struct DRLinkResponse {
         console.info('cost ' + (endTime - beginTime))
         this.message = resp.toString();   // 输出response到手机屏幕  string类型
         if (resp.item) {
-          console.info("代码：" + resp.item.code)
-          console.info("名称：" + resp.item.name)
-          console.info("时间：" + resp.item.datetime)
-          console.info("类别：" + resp.item.subtype)
-          console.info("最新价：" + resp.item.lastPrice)
-          console.info("昨收价：" + resp.item.preClosePrice)
-          console.info("涨幅：" + resp.item.changeRate)
-          console.info("涨跌：" + resp.item.change)
-          console.info("联动代码溢价率：" + resp.item.premiumRate)
-          expect(resp.item.subtype).assertEqual("1001")
+          let str:DRLinkItem = resp.item
+          console.info(`代码：${str.code}==名称：${str.name}==时间：${str.datetime}==类别：${str.subtype}==最新价：${str.lastPrice}==昨收价：${str.preClosePrice}==涨幅：${str.changeRate}==涨跌：${str.change}==联动代码溢价率：${str.premiumRate}`)
+          // expect(resp.item.subtype).assertEqual("1001")
         }
       },
       onFail: (err: ErrorInfo) => {

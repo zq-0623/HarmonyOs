@@ -5,7 +5,7 @@
  * FileName:TCPTickEntrustResp
  */
 import router from '@ohos.router'
-import { IPush, SseSDK, MQTTManager,SubscribeType,L2TickEntrustResp, Permission } from 'SseCore';
+import { IPush, SseSDK, MQTTManager,SubscribeType,L2TickEntrustResp, Permission, TickEntrustItem } from 'SseCore';
 
 @Entry
 @Component
@@ -38,13 +38,13 @@ struct TCPTickEntrustResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.tickEntrustPush   = {push:(code,resp:L2TickEntrustResp) => {
+    iPush.tickEntrustPush   = {push:(code:string,resp:L2TickEntrustResp) => {
       this.message = resp.toString();
       console.log("起始引索:" + resp.startIndex)
       console.log("结束引索:" + resp.endIndex)
       if (resp.items){
         for(let i = 0; i < resp.items.length; i++){
-          let str = resp.items[i]
+          let str:TickEntrustItem = resp.items[i]
           console.info(`委托序号:${str.sn}==委托价:${str.price}==委托量:${str.volume}==买卖方:${str.bs}==卖委时间:${str.time}`)
         }
       }

@@ -17,9 +17,9 @@ struct L2TickEntrustReq {
   *  场景二：
   *     当param有值时，优先使用param的值，此时index，pageSize，type三个参数无效
   *         1.param:num1,num2,num3
-  *              A.当num3=-1时,num1为任意数字(建议给0)，num2为条数,如 0,20,-1 表示获取最新的20条   ====>获取到的数据最新一条在最前面,starIndex<endIndex
-  *              B.当num3=0时,num1为下标，num2为条数，如 2.22373434E8,20,0，表示获取分笔下标为2.22373434E8之后的20条   param:startIndex,20,0;starIndex<endIndex
-  *              C.当num3=1时,num1为下标，num2为条数，如 2.22373434E8,20,1，表示获取分笔下标为2.22373434E8之前的20条   param:endIndex,20,1;starIndex>endIndex
+  *              A.当num3=-1时,num1为任意数字(建议给0)，num2为条数,如 0,100,-1 表示获取最新的100条   ====>获取到的数据最新一条在最前面,starIndex<endIndex
+  *              B.当num3=0时,num1为下标，num2为条数，如 2.22373434E8,100,0，表示获取分笔下标为2.22373434E8之后的100条   param:startIndex,100,0;starIndex<endIndex
+  *              C.当num3=1时,num1为下标，num2为条数，如 2.22373434E8,100,1，表示获取分笔下标为2.22373434E8之前的100条   param:endIndex,100,1;starIndex>endIndex
   *
    */
   requestList:Array<ListRequestType> = [

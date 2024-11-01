@@ -7,7 +7,14 @@
 import router from '@ohos.router'
 import { IPush, SseSDK, MQTTManager,SubscribeType, OHLCItem, ChartResp, TickResp, L2TickDetailResp,
   L2TickEntrustResp,
-  L2TickRestoreResp} from 'SseCore';
+  L2TickRestoreResp,
+  QuoteItem,
+  ThousandsData,
+  QXData,
+  TickDetailItem,
+  TickEntrustItem,
+  TickRestorePush,
+  ThousandsItem} from 'SseCore';
 import hilog from '@ohos.hilog';
 
 @Entry
@@ -37,17 +44,17 @@ struct AllPush {
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
     //打印逐笔明细
-    iPush.tickDetailPush  = {push:(code,resp:L2TickDetailResp) => {
+    iPush.tickDetailPush  = {push:(code:string,resp:L2TickDetailResp) => {
       if (resp.tickDetailItems && resp.tickDetailItems.length > 0) {
         console.info('headersParams:' + resp.headerParams)
         for (let i = 0; i < resp.tickDetailItems.length; i++) {
-          let str = resp.tickDetailItems.convertToArray()[i]
+          let str:TickDetailItem = resp.tickDetailItems.convertToArray()[i]
           console.info(`买卖标识:${str.transactionStatus}==交易时间:${str.transactionTime}==交易量:${str.singleVolume}==成交价格:${str.transactionPrice}`)
         }
       }
     }};
     // 分笔明细
-    iPush.tickPush  = {push:(code,resp:TickResp) => {
+    iPush.tickPush  = {push:(code:string,resp:TickResp) => {
       this.message = resp.toString();
       console.info("头里返回的数据:" + resp.headerParams)
       if (resp.tickItems) {
@@ -59,7 +66,7 @@ struct AllPush {
       }
     }};
     //打印快照
-    iPush.quotePush = {push:(item) => {
+    iPush.quotePush = {push:(item:QuoteItem) => {
       if (item) {
         hilog.isLoggable(0x0001,'testLog',hilog.LogLevel.DEBUG)
         console.info(`时间:${item.datetime}==代码:${item.id}==最新价:${item.lastPrice}`)
@@ -70,7 +77,7 @@ struct AllPush {
       }
     }};
     //打印分时
-    iPush.chartPush = {push:(code,resp) => {
+    iPush.chartPush = {push:(code:string,resp:ChartResp) => {
       this.message = resp.toString();
       console.info("总点数:" + resp.tickCount)
       console.info("市场交易时间:" + resp.systemDatetime)
@@ -90,19 +97,19 @@ struct AllPush {
       }
       if (resp.tradeDates) {
         for (let k = 0; k < resp.tradeDates.length; k++) {
-          let str:OHLCItem = resp.tradeDates[k]
+          let str:string = resp.tradeDates[k]
           console.info("日期列表:"  + str)
         }
       }
       if (resp.referencePrices){
-        resp.referencePrices.forEach((key, value) => {
+        resp.referencePrices.forEach((key:string, value:string) => {
           console.info("价格：" + key)
           console.info("时间：" + value)
         })
       }
     }};
     //打印5日
-    iPush.chart5Push = {push:(code,resp:ChartResp) => {
+    iPush.chart5Push = {push:(code:string,resp:ChartResp) => {
       this.message = resp.toString();
       console.info("总点数:" + resp.tickCount)
       console.info("市场交易时间:" + resp.systemDatetime)
@@ -122,12 +129,12 @@ struct AllPush {
       }
       if (resp.tradeDates) {
         for (let k = 0; k < resp.tradeDates.length; k++) {
-          let str:OHLCItem = resp.tradeDates[k]
+          let str: string = resp.tradeDates[k]
           console.info("日期列表:"  + str)
         }
       }
       if (resp.referencePrices){
-        resp.referencePrices.forEach((key, value) => {
+        resp.referencePrices.forEach((key:string, value:string) => {
           console.info("价格：" + key)
           console.info("时间：" + value)
         })
@@ -135,18 +142,18 @@ struct AllPush {
     }};
 
     //打印逐笔委托
-    iPush.tickEntrustPush   = {push:(code,resp:L2TickEntrustResp) => {
+    iPush.tickEntrustPush   = {push:(code:string,resp:L2TickEntrustResp) => {
       console.log("起始引索:" + resp.startIndex)
       console.log("结束引索:" + resp.endIndex)
       if (resp.items){
         for(let i = 0; i < resp.items.length; i++){
-          let str = resp.items[i]
+          let str:TickEntrustItem = resp.items[i]
           console.info(`委托序号:${str.sn}==委托价:${str.price}==委托量:${str.volume}==买卖方:${str.bs}==卖委时间:${str.time}`)
         }
       }
     }};
     //打印逐笔还原
-    iPush.tickRestorePush = {push:(code,resp:L2TickRestoreResp) => {
+    iPush.tickRestorePush = {push:(code:string,resp:L2TickRestoreResp) => {
       if (resp.items){
         console.log("起始引索:" + resp.startIndex)
         console.log("结束引索:" + resp.endIndex)
@@ -157,11 +164,11 @@ struct AllPush {
       }
     }};
     //打印千档
-    iPush.thousandsPush  = {push:(code,data) => {
+    iPush.thousandsPush  = {push:(code:string,data:ThousandsData) => {
       console.info(`testData${data.code}`)
       if (data.buyItems && data.buyItems.length > 0) {
         for (let i = 0; i < data.buyItems.length; i++) {
-          let str = data.buyItems[i]
+          let str:ThousandsItem = data.buyItems[i]
           console.info(`股票代码:${str.originalPrice}==买卖方向:${str.bs}==委托价格:${str.price}==委托量:${str.volume}==笔数(委托单子数量):${str.count}`)
         }
       }
@@ -173,7 +180,7 @@ struct AllPush {
       }
     }};
     //打印全息
-    iPush.qxPush = {push:(code,data) => {
+    iPush.qxPush = {push:(code:string,data:QXData) => {
       console.info(`股票代码:${data.code}==价格:${data.price}`)
       if (data.items && data.items.length > 0) {
         for (let i = 0; i < data.items.length; i++) {

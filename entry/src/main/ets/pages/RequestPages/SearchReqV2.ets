@@ -3,7 +3,7 @@ import { StockTableManager2 ,ErrorInfo} from 'SseCore'
 
 @Entry
 @Component
-struct SearchReqV2 {
+struct SearchReqV2 {    // 本地搜索
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
     {title: "搜索V2-sh",request: "SearchReqV2",param:{keyword:"0", searchLocal:true,limit:20,categories:['sh']}},
@@ -43,7 +43,7 @@ struct SearchReqV2 {
     Column() {
       Button("下载码表")
         .onClick(() => {
-          StockTableManager2.download(["sh","sz","hk"],(err:ErrorInfo|undefined) => {
+          StockTableManager2.download(["sh","sz","hk","hh","hz","cff","dce","czce","gb","csi","ine","shfe","bk","bj","bz","shbh","szbh"],(err:ErrorInfo|undefined) => {
           })
         }).width('80%').padding({bottom:20});
       List({ space: 20 }) {
@@ -60,6 +60,7 @@ struct SearchReqV2 {
     }.padding({top: 50})
   }
 }
+
 
 export  interface ListRequestType {
   title?: string;

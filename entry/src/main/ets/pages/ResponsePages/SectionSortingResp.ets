@@ -45,7 +45,7 @@ struct SectionSortingResponse {
         if (resp.items && resp.items.length > 0) {
           for (let i = 0; i < resp.items.length; i++) {
             let str = resp.items.convertToArray()[i]
-            console.info(`板块代码:${str.code}==板块名称:${str.name}==板块类型:${str.type}`)
+            console.info(`板块代码:${str.code}==板块名称:${str.name}==板块类型:${str.type}==涨跌幅:${str.changeRate}`)
           }
         }
       },

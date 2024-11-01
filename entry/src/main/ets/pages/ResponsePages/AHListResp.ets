@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { AHListReq,Request,ErrorInfo,AHListResp } from 'SseCore'
+import { AHListReq,Request,ErrorInfo,AHListResp, AHListItem } from 'SseCore'
 let RequestMap = {
   "AHListReq": new AHListReq(),
 } as Record<string, Request>
@@ -13,17 +13,9 @@ struct AHListResponse {
   private param: Record<string, Object> = {};
   build() {
     Column() {
-      Text(this.title)
-        .padding(5)
-        .margin({ bottom: 5 })
-        .fontSize(20)
-        .border({ width: 2 })
-        .width('90%')
+      Text(this.title).padding(5).margin({ bottom: 5 }).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15, right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
+        Text(this.message).width('90%').margin({ left: 15, right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A)
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })
@@ -42,20 +34,10 @@ struct AHListResponse {
         console.info('cost ' + (endTime - beginTime))
         this.message = resp.toString();   // 输出response到手机屏幕  string类型
         if (resp.items && resp.items.length > 0) {
-          console.info("联动名称：" + resp.items[0].name)
-          console.info("A股代码：" + resp.items[0].codeA)
-          console.info("A股最新价：" + resp.items[0].lastPriceA)
-          console.info("A股前收盘价：" + resp.items[0].preClosePriceA)
-          console.info("A股涨跌幅：" + resp.items[0].changeRateA)
-          console.info("A股行情时间：" + resp.items[0].datetimeA)
-          console.info("H股代码：" + resp.items[0].codeH)
-          console.info("H股名称：" + resp.items[0].nameH)
-          console.info("H股最新价：" + resp.items[0].lastPriceH)
-          console.info("H股前收盘价：" + resp.items[0].preClosePriceH)
-          console.info("H股涨跌幅：" + resp.items[0].changeRateH)
-          console.info("H股行情时间：" + resp.items[0].datetimeH)
-          console.info("AH溢价率：" + resp.items[0].premiumRate)
-          console.info("HA溢价率：" + resp.items[0].premiumRateHA)
+          let str = resp.items
+          for (let i = 0; i < str.length; i++) {
+            console.info(`联动名称：${str[i].name}==A股代码：${str[i].codeA}==A股最新价：${str[i].lastPriceA}==A股前收盘价：${str[i].preClosePriceA}==A股涨跌幅：${str[i].changeRateA}==A股行情时间：${str[i].datetimeA}==H股代码：${str[i].codeH}==H股名称：${str[i].nameH}==H股最新价：${str[i].lastPriceH}==H股前收盘价：${str[i].preClosePriceH}==H股涨跌幅：${str[i].changeRateH}==H股行情时间：${str[i].datetimeH}==AH溢价率：${str[i].premiumRate}==HA溢价率：${str[i].premiumRateHA}`)
+          }
         }
       },
       onFail: (err: ErrorInfo) => {

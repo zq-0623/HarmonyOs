@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { HistoryChartReq,ErrorInfo,HistoryChartResp,Request } from 'SseCore'
+import { HistoryChartReq,ErrorInfo,HistoryChartResp,Request, OHLCItem } from 'SseCore'
 let RequestMap = {
   "HistoryChartReq": new HistoryChartReq(),
 } as Record<string, Request>
@@ -13,17 +13,9 @@ struct HistoryChartResponse {
   private param: Record<string, Object> = {};
   build() {
     Column() {
-      Text(this.title)
-        .padding(5)
-        .margin({ bottom: 5 })
-        .fontSize(20)
-        .border({ width: 2 })
-        .width('90%')
+      Text(this.title).padding(5).margin({ bottom: 5 }).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15, right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
+        Text(this.message).width('90%').margin({ left: 15, right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A)
           .padding({ left: 10, right: 10, top: 5, bottom: 25 })
       }
     }.padding({ top: 20 })
@@ -46,8 +38,13 @@ struct HistoryChartResponse {
           console.info("交易时间段：" + resp.timezone)
         }
         if (resp.OHLCItems) {
-          console.info("交易时间：" + resp.OHLCItems.convertToArray()[0].datetime)
-          console.info("开盘价：" + resp.OHLCItems.convertToArray()[0].openPrice)
+          for (let i = 0; i < resp.OHLCItems.length; i++) {
+           let str:OHLCItem = resp.OHLCItems.convertToArray()[i]
+            console.info(`交易时间:${str.datetime}==开盘价:${str.openPrice}==最高价:${str.highPrice}==最低价:${str.lowPrice}==收盘价:${str.closePrice}==交易量:${str.tradeVolume}==均价:${str.averagePrice}==参考价/昨收价:${str.referencePrice}==成交额:${str.amount}==基金净值:${str.IOPV}`)
+          }
+        }
+        else {
+          console.warn("💧💧💧接口返回数据为空💧💧💧")
         }
       },
       onFail: (err: ErrorInfo) => {

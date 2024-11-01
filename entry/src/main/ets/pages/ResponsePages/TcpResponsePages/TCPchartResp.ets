@@ -5,7 +5,7 @@
  * FileName:TCPchartResp
  */
 import router from '@ohos.router'
-import { IPush, SseSDK, MQTTManager,SubscribeType, OHLCItem } from 'SseCore';
+import { IPush, SseSDK, MQTTManager,SubscribeType, OHLCItem, ChartReq } from 'SseCore';
 @Entry
 @Component
 struct TCPchartResponse {
@@ -17,11 +17,7 @@ struct TCPchartResponse {
     Column() {
       Text(this.title).padding(5).margin({bottom: 5}).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
-        Text(this.message)
-          .width('90%')
-          .margin({ left: 15,  right: 15, bottom: 5 })
-          .backgroundColor(0xFF56CA6A)
-          .padding(5)
+        Text(this.message).width('90%').margin({ left: 15,  right: 15, bottom: 5 }).backgroundColor(0xFF56CA6A).padding(5)
       }
     }.padding({ top: 20 })
   }
@@ -30,7 +26,7 @@ struct TCPchartResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.chartPush = {push:(code,resp) => {
+    iPush.chartPush = {push:(code:string,resp) => {
       this.message = resp.toString();
       console.info("总点数:" + resp.tickCount)
       console.info("市场交易时间:" + resp.systemDatetime)
@@ -52,14 +48,13 @@ struct TCPchartResponse {
       }
       if (resp.tradeDates) {
         for (let k = 0; k < resp.tradeDates.length; k++) {
-          let str:OHLCItem = resp.tradeDates[k]
+          let str: string = resp.tradeDates[k]
           console.info("日期列表:"  + str)
         }
       }
       if (resp.referencePrices){
-        resp.referencePrices.forEach((key, value) => {
-          console.info("价格：" + key)
-          console.info("时间：" + value)
+        resp.referencePrices.forEach((key:string, value:string) => {
+          console.info(`价格：${key}}==时间：${value}}`)
         })
       }
     }};

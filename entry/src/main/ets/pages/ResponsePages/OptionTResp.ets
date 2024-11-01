@@ -1,8 +1,10 @@
 import router from '@ohos.router'
-import { OptionTReq,ErrorInfo,OptionResp,Request } from 'SseCore'
+import { OptionTReq, ErrorInfo, OptionResp, Request } from 'SseCore'
+
 let RequestMap = {
   "OptionTReq": new OptionTReq(),
 } as Record<string, Request>
+
 @Entry
 @Component
 struct OptionResponse {
@@ -11,6 +13,7 @@ struct OptionResponse {
   private title: string = '';
   private request: Request = new Request();
   private param: Record<string, Object> = {};
+
   build() {
     Column() {
       Text(this.title)
@@ -24,31 +27,38 @@ struct OptionResponse {
           .width('90%')
           .margin({ left: 15, right: 15, bottom: 5 })
           .backgroundColor(0xFF56CA6A)
-          .padding({ left: 10, right: 10, top: 5, bottom: 25 })
+          .padding({
+            left: 10,
+            right: 10,
+            top: 5,
+            bottom: 25
+          })
       }
     }.padding({ top: 20 })
   }
+
   private intervalId?: number
-  private sendReq(){
+
+  private sendReq() {
     for (let keyValue of Object.entries(this.param)) {
       Reflect.set(this.request, keyValue[0], keyValue[1]);
     }
     let date = new Date()
     let beginTime = date.getTime()
     this.request.send({
-      onSuccess: (resp: OptionResp) => {   // 快照响应
+      onSuccess: (resp: OptionResp) => { // 快照响应
         let date = new Date()
         let endTime = date.getTime()
         console.info('cost ' + (endTime - beginTime))
-        this.message = resp.toString();   // 输出response到手机屏幕  string类型
+        this.message = resp.toString(); // 输出response到手机屏幕  string类型
         if (resp.quoteItems) {
           console.info("代码：" + resp.quoteItems.convertToArray()[0].id)
           console.info("名称：" + resp.quoteItems.convertToArray()[0].name)
           console.info("最新价：" + resp.quoteItems.convertToArray()[0].lastPrice)
         }
         if (resp.optionTList) {
-          for(let optionTlistElement of resp.optionTList){
-            for (let optionTlistElementElement of optionTlistElement){
+          for (let optionTlistElement of resp.optionTList) {
+            for (let optionTlistElementElement of optionTlistElement) {
               let key = optionTlistElementElement[0]
               let value = optionTlistElementElement[1]
               console.info("资料列表：" + key)
@@ -59,8 +69,10 @@ struct OptionResponse {
       },
       onFail: (err: ErrorInfo) => {
         console.info("AHListRequest error:" + err.getMsg());
-      } });
+      }
+    });
   }
+
   async aboutToAppear() {
     let recordParam = this.myParams as Record<string, Object>;
     this.title = recordParam['title'] as string;
@@ -68,7 +80,8 @@ struct OptionResponse {
     this.request = RequestMap[recordParam['request'] as string];
     this.sendReq()
   }
-  aboutToDisappear(){
+
+  aboutToDisappear() {
     clearInterval(this.intervalId)
   }
 }

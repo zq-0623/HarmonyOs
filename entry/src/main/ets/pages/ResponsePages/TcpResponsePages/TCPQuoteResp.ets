@@ -5,8 +5,7 @@
  * FileName:TCPQuoteResp
  */
 import router from '@ohos.router'
-import { IPush, SseSDK, MQTTManager,SubscribeType, Permission } from 'SseCore';
-import hilog from '@ohos.hilog';
+import { IPush, SseSDK, MQTTManager,SubscribeType, QuoteItem } from 'SseCore';
 
 @Entry
 @Component
@@ -19,9 +18,7 @@ struct TCPQuoteResponse {
   build() {
     Column() {
       Button('切换权限1').onClick(() => {
-        SseSDK.permission().removeHkPermission(Permission.HK10)
-        SseSDK.permission().addHkPermission(Permission.HKD1)
-        SseSDK.permission().submit()
+        MQTTManager.getInstance().unSubscribe("600839.sh",SubscribeType.Snap)
       })
       Text(this.title).padding(5).margin({bottom: 5}).fontSize(20).border({ width: 2 }).width('90%')
       Scroll() {
@@ -39,14 +36,13 @@ struct TCPQuoteResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.quotePush = {push:(item) => {
-
+    iPush.quotePush = {push:(item:QuoteItem) => {
       if (item) {
         console.info(`时间:${item.datetime}==代码:${item.id}==最新价:${item.lastPrice}==五档/十档 买价:${item.buyPrice}`)
       }
       if (item.buyPrices) {
         for (let i = 0; i < item.buyPrices.length; i++) {
-          console.info(`五档/十档 买价:${item.buyPrices[i]}`)
+          console.info(`五档/十档 买价:${item.buyPrices.at(i)}`)
         }
       }
 
@@ -57,6 +53,6 @@ struct TCPQuoteResponse {
 
   aboutToDisappear(){
     let codeStrs = this.param["code"] as  string
-    MQTTManager.getInstance().unSubscribe(codeStrs,SubscribeType.Snap)
+    // MQTTManager.getInstance().unSubscribe(codeStrs,SubscribeType.Snap)
   }
 }

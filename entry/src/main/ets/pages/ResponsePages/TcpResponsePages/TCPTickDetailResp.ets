@@ -5,7 +5,7 @@
  * FileName:TCPTickDetailResp
  */
 import router from '@ohos.router'
-import { IPush, SseSDK, MQTTManager,SubscribeType,L2TickDetailResp, Permission } from 'SseCore';
+import { IPush, SseSDK, MQTTManager,SubscribeType,L2TickDetailResp, Permission, TickDetailItem } from 'SseCore';
 @Entry
 @Component
 struct TCPTickDetailResponse {
@@ -33,12 +33,12 @@ struct TCPTickDetailResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.tickDetailPush  = {push:(code,resp:L2TickDetailResp) => {
+    iPush.tickDetailPush  = {push:(code:string,resp:L2TickDetailResp) => {
       this.message = resp.toString();
       if (resp.tickDetailItems && resp.tickDetailItems.length > 0) {
         console.info('headersParams:' + resp.headerParams)
         for (let i = 0; i < resp.tickDetailItems.length; i++) {
-          let str = resp.tickDetailItems.convertToArray()[i]
+          let str:TickDetailItem = resp.tickDetailItems.convertToArray()[i]
           console.info(`买卖标识:${str.transactionStatus}==交易时间:${str.transactionTime}==交易量:${str.singleVolume}==成交价格:${str.transactionPrice}`)
         }
       }

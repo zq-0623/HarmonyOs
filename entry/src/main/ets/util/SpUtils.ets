@@ -1,7 +1,7 @@
 import preferences from '@ohos.data.preferences';
 import dataPreferences from '@ohos.data.preferences';
 import { SseSDK } from 'SseCore';
-// import { NetworkManager } from 'SseCore/src/main/ets/b/n4/e5';
+// import { NetworkManager  } from 'SseCore/src/main/ets/b/s4/n5';
 
 const dataFileName = 'sseSpStore';
 const TAG = 'SpUtils';

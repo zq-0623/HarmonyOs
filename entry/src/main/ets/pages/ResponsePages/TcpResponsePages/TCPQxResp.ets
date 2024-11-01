@@ -5,7 +5,7 @@
  * FileName:TCPQxResp
  */
 import router from '@ohos.router'
-import { IPush, SseSDK, MQTTManager,SubscribeType} from 'SseCore';
+import { IPush, SseSDK, MQTTManager,SubscribeType, QXData, QXItem} from 'SseCore';
 @Entry
 @Component
 struct TCPQxResponse {
@@ -30,12 +30,12 @@ struct TCPQxResponse {
     this.title = recordParam['title'] as  string;
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
-    iPush.qxPush = {push:(code,data) => {
+    iPush.qxPush = {push:(code:string,data:QXData) => {
       this.message = data.toString();
       console.info(`股票代码:${data.code}==价格:${data.price}`)
       if (data.items && data.items.length > 0) {
         for (let i = 0; i < data.items.length; i++) {
-          let str = data.items[i]
+          let str:QXItem = data.items[i]
           console.info(`委托序号:${str.sn}==买卖方向:${str.bs}==委托量:${str.volume}`)
         }
       }
