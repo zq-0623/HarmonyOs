@@ -4,7 +4,7 @@ import router from '@ohos.router'
 struct KZZInfoReq {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "可转债静态信息-SZ1300",request: "KZZInfoReq",param:{code:"127072.sz"}},
+    {title: "可转债静态信息-SZ1300",request: "KZZInfoReq",param:{code:"128082.sz"}},
     {title: "可转债静态信息-SH1300",request: "KZZInfoReq",param:{code:"113680.sh"}},
   ]
   build() {

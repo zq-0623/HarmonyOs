@@ -1,7 +1,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import {SseConfig,SseSDK,Permission,RegisterReq,SiteManagerUtils,PingReq,PingResp } from 'SseCore';
+import {SseConfig,SseSDK,Permission,RegisterReq,MarketInfo } from 'SseCore';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 import { SpUtils } from '../util/SpUtils';
@@ -12,32 +12,35 @@ export default class EntryAbility extends UIAbility {
     let sseConfig: SseConfig = new SseConfig()
     let testfile: string = "test.txt"
     SpUtils.getInstance(this.context);
-    sseConfig.setContext(this.context).setAppkey("RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=");
+    // 支持一个包设置全真与生产环境  true  支持   false  不支持
+    // 全真： RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=
+    // 生产： iOPaEOWdWlTrSn+Ed/L0nrsV0tk8AAgiWPy4g1K19Aw=
+    sseConfig.setContext(this.context,false).setAppkey("RNDHZGpBEDW3D3VPErhCLMtUKrkJK5UE0dyd/gvGW00=");
+    // sseConfig.setContext(this.context,true).setAppkey("iOPaEOWdWlTrSn+Ed/L0nrsV0tk8AAgiWPy4g1K19Aw=");
     SseSDK.setConfig(sseConfig);
     SseSDK.setDebug(true,true);
-    SseSDK.getHid();
     SseSDK.permission()
       // SseSDK.permission().setLevel(Permission.LEVEL_1)   // 1、统一设置沪深L1权限，不给默认会有L1的权限
-      // .addShSzPermission(Permission.SH_LEVEL_1)  // 2、沪L1权限
-      // .addShSzPermission(Permission.SZ_LEVEL_1)  // 2、深L1权限
-      .addShSzPermission(Permission.SH_LEVEL_2)  // 沪L2权限
-      .addShSzPermission(Permission.SZ_LEVEL_2)  // 深L2权限
+      .addShSzPermission(Permission.SH_LEVEL_1)  // 2、沪L1权限
+      .addShSzPermission(Permission.SZ_LEVEL_1)  // 2、深L1权限
+      // .addShSzPermission(Permission.SH_LEVEL_2)  // 沪L2权限
+      // .addShSzPermission(Permission.SZ_LEVEL_2)  // 深L2权限
       // .addShSzPermission(Permission.SH_L2_PLUS)  // 沪L2plus权限  后台若配置L2plus权限，则SDK可以不用单独设置，但必须设置L2权限
       // .addShSzPermission(Permission.SZ_L2_PLUS)  // 深L2plus权限
       // .addShSzOverseaPermission(Permission.OL_LEVEL_1)  // 境外沪深Level1权限必须一起设置，不支持单独设置
       // .addShSzOverseaPermission(Permission.OL_SH_LEVEL_2)  // 境外上海Level2
       // .addShSzOverseaPermission(Permission.OL_SZ_LEVEL_2)  // 境外深圳Level2
-      // .addHkPermission(Permission.HK10)   // 港股10档
-      .addHkPermission(Permission.SHHK5)  // 沪港通5档
-      .addHkPermission(Permission.SZHK5)  // 深港通5档
+      .addHkPermission(Permission.HK10)   // 港股10档
+      // .addHkPermission(Permission.SHHK5)  // 沪港通5档
+      // .addHkPermission(Permission.SZHK5)  // 深港通5档
       // .addHkPermission(Permission.HKA1)   // 港股实时1档
       // .addHkPermission(Permission.SHHK1)  // 沪港通1档
       // .addHkPermission(Permission.SZHK1)  // 深港通1档
       // .addHkPermission(Permission.HKD1)   // 港股延时1档
       // .addHkPermission(Permission.HKAZ)   // 港股指数实时
       // .addHkPermission(Permission.HKDZ)  // 港股指数延时
-      // .addHKOverseaPermission(Permission.OL_HK10)  // 境外港股10档
-      // .addHKOverseaPermission(Permission.OL_HKA1)  // 境外港股1档
+      .addHKOverseaPermission(Permission.OL_HK10)  // 境外港股10档
+      .addHKOverseaPermission(Permission.OL_HKA1)  // 境外港股1档
       .setSseLevel(Permission.LEVEL_1)   //统一设置大商所、郑商所、全球、外汇市场的level
       // .submit();   // 初始化注册之前不能调该方法，更新权限时会获取不到港股境外权限
     // let iPush: IPush = new IPush();
@@ -53,20 +56,36 @@ export default class EntryAbility extends UIAbility {
     // }};
     // SseSDK.setIPush(iPush);
     // MQTTManager.getInstance().subscribe("000002.sz" ,SubscribeType.TickRestore)
+    //  强制认证方法
+    // new RegisterReq().forceAuth({
+    //   onSuccess: (resp1) => {
+    //     console.info("resgister sscuess")
+    //     // hilog.info(0x0000, 'testTag', 'Test ping = %{public}d', resp.success);
+    //   },
+    //   onFail: (err) => {
+    //     console.info("resgister onFail:" + err.getMsg());
+    //     hilog.info(0x0000, 'testTag', 'Test ping fail', "SseCore.add(2, 3)");
+    //   } });
     new RegisterReq().send({
       onSuccess: () => {
         console.info("注册成功")
+        console.log("SH当前状态：" + SseSDK.getLevelStatus('sh'))
+        console.log("SZ当前状态：" + SseSDK.getLevelStatus('sz'))
+        console.info("当前SDK版本：" + SseSDK.getVersion())
+        console.info("当前SDK环境：" + SseSDK.getEnv())
+        console.info("HID：" + SseSDK.getHid())
+        console.info("marketInfo信息：" + MarketInfo.getSource())
         console.info("resgister sscuess:" + RegisterReq.toString())
-        SseSDK.printServerIP();  // 打印所有市场的站点信息
+        // SseSDK.printServerIP();  // 打印所有市场的站点信息
         // let smu = new SiteManagerUtils();
-        // let MarketSiteType = "hka1"
+        // let Marketing[] = []
+        //         //   for (let i = 0; i < getSmu.length; i++) {
+        //         //     let pingReq = new PingReq();
+        //         //     pingReq.ip = getSmu[i]
+        //         //     pingReq.seSiteType = "hka1"
         // let getSmu = smu.getIpByMarket(MarketSiteType);
         // console.info("ips:" + getSmu)
-        // let ips: string[] = []
-        //   for (let i = 0; i < getSmu.length; i++) {
-        //     let pingReq = new PingReq();
-        //     pingReq.ip = getSmu[i]
-        //     pingReq.send({
+        // let ips: strnd({
         //       onSuccess: (resp: PingResp) => {
         //         ips.push(resp.pingIP)
         //         console.info(`${MarketSiteType}市场返回的http站点地址：${resp.pingIP}     请求耗时:${resp.costTime}`)
@@ -85,7 +104,8 @@ export default class EntryAbility extends UIAbility {
         //   MQTTManager.getInstance().unSubscribe("000002.sz",SubscribeType.TickRestore)
         // },3000)
       },
-      onFail: () => {
+      onFail: (err) => {
+        console.error("认证失败：" + err.getMsg())
         hilog.info(0x0000, 'testTag', 'Test ping fail', "SseCore.add(2, 3)");
       } });
     // 监听

@@ -53,6 +53,6 @@ struct TCPQuoteResponse {
 
   aboutToDisappear(){
     let codeStrs = this.param["code"] as  string
-    // MQTTManager.getInstance().unSubscribe(codeStrs,SubscribeType.Snap)
+    MQTTManager.getInstance().unSubscribe(codeStrs,SubscribeType.Snap)
   }
 }

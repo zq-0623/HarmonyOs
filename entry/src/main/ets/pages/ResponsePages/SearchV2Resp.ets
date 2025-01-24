@@ -1,6 +1,6 @@
 import router from '@ohos.router'
 import { StockTableManager2 } from 'SseCore'
-import { SearchReqV2,SearchResp,ErrorInfo,Request } from 'SseCore'
+import { SearchReqV2,SearchResp,ErrorInfo,Request,SearchItem } from 'SseCore'
 let RequestMap = {
   "SearchReqV2": new SearchReqV2(),
 } as Record<string, Request>
@@ -37,7 +37,7 @@ struct SearchReqV2Response {
         this.message = resp.toString();
         if (resp.items) {
           for (let i = 0; i < resp.items.length; i++) {
-            let str = resp.items.convertToArray()[i]
+            let str:SearchItem = resp.items.convertToArray()[i]
             console.info(`股票代码:${str.code}==股票名称:${str.name}==次类别:${str.subtype}==拼音:${str.pinYin}==市场别:${str.market}==沪港通标签:${str.hh}==深港通标签:${str.hz}==JSON29栏位:${str.st}==股票长名称:${str.longName}==股票长名称首字母:${str.longPinYin}==股票代码（不含市场后缀）:${str.ID}==股票名称（去除文字间空格的股票名称）:${str.name2}`)
           }
         }

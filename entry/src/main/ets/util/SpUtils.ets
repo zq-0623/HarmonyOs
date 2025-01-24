@@ -1,8 +1,7 @@
 import preferences from '@ohos.data.preferences';
 import dataPreferences from '@ohos.data.preferences';
 import { SseSDK } from 'SseCore';
-// import { NetworkManager  } from 'SseCore/src/main/ets/b/s4/n5';
-
+import { NetworkManager } from 'SseCore/src/main/ets/components/network/NetworkManager';
 const dataFileName = 'sseSpStore';
 const TAG = 'SpUtils';
 export class SpUtils {
@@ -43,9 +42,9 @@ export class SpUtils {
         await SseSDK.permission().initIpState()
         //初始境内外状态、抛通知、重连tcp
         if (SpUtils.china_ip === isc) {
-          // NetworkManager.getInstance().ipChanged(SpUtils.IP_CHINA)
+          NetworkManager.getInstance().ipChanged(SpUtils.IP_CHINA)
         } else {
-          // NetworkManager.getInstance().ipChanged(SpUtils.IP_OTHER)
+          NetworkManager.getInstance().ipChanged(SpUtils.IP_OTHER)
         }
         //ipChanged已经处理重连tcp了
         // TCPManager.getInstance().reConnectTcp();

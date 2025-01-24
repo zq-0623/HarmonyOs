@@ -1,4 +1,6 @@
 import router from '@ohos.router';
+import { MarketInfo } from 'SseCore';
+import { SpUtils } from '../util/SpUtils';
 
 // import { SpUtils } from '../util/SpUtils';
 @Entry
@@ -12,6 +14,7 @@ struct Index {
       List({space:20}) {
         ListItem() {
           Button("level one").onClick(() => {
+            console.info("marketInfo信息：" + MarketInfo.getSource())
             // SseSDK.permission().setLevel(Permission.LEVEL_1); // 单独设置权限后不需要再这里设置。否则单独设置的权限会失效
             router.pushUrl({ url: 'pages/ApiList' }, router.RouterMode.Standard, (err) => {
               if (err) {
@@ -36,9 +39,9 @@ struct Index {
         }.width('100%').padding({top:20})
         ListItem() {
           Button("set Level").onClick(() => {
-            // SpUtils.getInstance().saveIpIsc('n')
-            // router.pushUrl({ url: 'pages/ApiList' }, router.RouterMode.Standard, (err) => {
-            router.pushUrl({ url: 'pages/RequestPages/SaveLog' }, router.RouterMode.Standard, (err) => {
+            SpUtils.getInstance().saveIpIsc('n')
+            router.pushUrl({ url: 'pages/ApiList' }, router.RouterMode.Standard, (err) => {
+            // router.pushUrl({ url: 'pages/RequestPages/SaveLog' }, router.RouterMode.Standard, (err) => {
               if (err) {
                 console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                 return;

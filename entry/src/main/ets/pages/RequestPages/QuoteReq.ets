@@ -6,6 +6,15 @@ import { QuoteFiled } from '../../common/quoteCustomField'
 struct QuoteReq {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
+    {title: "自选单市场-sh指数",request: "QuoteReq",param:{codes:["000001.sh"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选单市场-sz指数",request: "QuoteReq",param:{codes:["399001.sz"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选单市场-bz指数",request: "QuoteReq",param:{codes:["899050.bz"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选单市场-SHETF",request: "QuoteReq",param:{codes:["588000.sh"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选单市场-SZETF",request: "QuoteReq",param:{codes:["159338.sz"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选单市场-SHETF-无最新价",request: "QuoteReq",param:{codes:["519671.sh"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选单市场-SZETF-无最新价",request: "QuoteReq",param:{codes:["161505.sz"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选涨跌幅字段验证",request: "QuoteReq",param:{codes:["603310.sh","600000.sh","600010.sh","000001.sz","000002.sz","899050.bz","873833.bz","561710.sh"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
+    {title: "自选申购赎回",request: "QuoteReq",param:{codes:["159338.sz","159352.sz","159361.sz","159518.sz","159915.sz"],quoteColumns:QuoteFiled.quoteCustoms,addValueColumns:addValue.addValueColumns}},
     {title: "自选单市场-sh",request: "QuoteReq",param:{codes:["600010.sh","900924.sh","688009.sh","513330.sh", "204001.sh","000001.sh","10006419.sh"]}},
     {title: "自选单市场-sz",request: "QuoteReq",param:{codes:["000001.sz","200625.sz","300315.sz","159792.sz", "131810.sz","399317.sz","90002507.sz"]}},
     {title: "自选单市场-bz",request: "QuoteReq",param:{codes:["836433.bz","821001.bz","899050.bz"]}},

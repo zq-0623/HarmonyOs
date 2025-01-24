@@ -10,7 +10,7 @@ struct PushType {
     {title: "快照推送-sh",request: "QuotePush",param:{code:"600839.sh"}},
     {title: "快照推送-sz",request: "QuotePush",param:{code:"300184.sz"}},
     {title: "快照推送-bz",request: "QuotePush",param:{code:"832149.bz"}},
-    {title: "快照推送-hk",request: "QuotePush",param:{code:"01468.hk"}},
+    {title: "快照推送-hk",request: "QuotePush",param:{code:"03033.hk"}},
     {title: "分时走势推送",request: "ChartPush",param:{code:"300059.sz"}},
     {title: "五日走势推送",request: "Chart5Push",param:{code:"000002.sz"}},
     {title: "分时明细推送",request: "TickPush",param:{code:"000002.sz,600000.sh"}},

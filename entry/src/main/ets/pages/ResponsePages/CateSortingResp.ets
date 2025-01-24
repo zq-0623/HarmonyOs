@@ -32,7 +32,8 @@ struct CateSortingResponse {
         if (resp.list && resp.list.length > 0) {
           for (let i = 0; i < resp.list.length;i++){
             let str:QuoteItem = resp.list.convertToArray()[i]
-            console.info(`交易状态:${str.status}==代码:${str.id}==名称:${str.name}==最低价:${str.lowPrice}==收益:${str.receipts}==市场:${str.market}==子类别:${str.subtype}==交易时间:${str.datetime}==最新价:${str.lastPrice}==最高价:${str.highPrice}==昨收价:${str.preClosePrice}==昨结价(期权期货):${str.presetPrice}==涨跌:${str.change}==涨跌幅:${str.changeRate}==涨跌比率:${str.changeRate}==总量:${str.volume}==当前成交量:${str.nowVolume}==换手率:${str.turnoverRate}==前5日涨跌幅:${str.changeRate5}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}`)
+            // console.info(`交易状态:${str.status}==代码:${str.id}==沪深市场ETF基金折价率（溢价率）:${str.premiumDiscountRates}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}==名称:${str.name}==最低价:${str.lowPrice}==收益:${str.receipts}==市场:${str.market}==子类别:${str.subtype}==交易时间:${str.datetime}==最新价:${str.lastPrice}==最高价:${str.highPrice}==昨收价:${str.preClosePrice}==昨结价(期权期货):${str.presetPrice}==涨跌:${str.change}==涨跌幅:${str.changeRate}==涨跌比率:${str.changeRate}==总量:${str.volume}==当前成交量:${str.nowVolume}==换手率:${str.turnoverRate}==前5日涨跌幅:${str.changeRate5}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}`)
+            console.info(`代码:${str.id}==ETF申购笔数:${str.buy_cancel_count}==ETF申购数量:${str.buy_cancel_num}==ETF申购金额:${str.buy_cancel_amount}==ETF赎回笔数:${str.sell_cancel_count}==ETF赎回数量:${str.sell_cancel_num}==ETF赎回金额:${str.sell_cancel_amount}`)
           }
         }
         if (resp.addValueModel && resp.addValueModel.length > 0) {

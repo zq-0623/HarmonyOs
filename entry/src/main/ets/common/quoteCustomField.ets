@@ -227,7 +227,21 @@ export class QuoteFiled {
     QuoteCustomField.quote_HIGH_PRECISION_IOPV	,					         //219          					// 高精度iopv	上海市场
     QuoteCustomField.quote_LONG_NAME,											         //220          		// 中文证券简称(长)
     QuoteCustomField.quote_TRANSACTION_NUM	,							         //221          				// 现成交笔数
-    QuoteCustomField.quote_STOCK_INFO,										         //222          			// 是否支持回转交易字段
-    QuoteCustomField.quote_OPTION_BREAK_REFERFENCE_PRICE	         //223          							// 期权熔断参考价	沪深市场
+    QuoteCustomField.quote_STOCK_INFO,										         //222          			 // 是否支持回转交易字段
+    QuoteCustomField.quote_OPTION_BREAK_REFERFENCE_PRICE,	         //223          				// 期权熔断参考价	沪深市场
+    // QuoteCustomField.quote_CHANGERATE3,                            // 224                // 前3日涨跌幅	沪深京市场
+    // QuoteCustomField.quote_CHANGERATE60,                           // 225                // 前60日涨跌幅	沪深京市场
+    // QuoteCustomField.quote_YESTERDAY_CHANGERATE,                   // 226                // 昨日涨跌幅	沪深京市场
+    // QuoteCustomField.quote_BUY_CANCEL_COUNT,                       // 227                // ETF申购笔数	沪L2，深L1、L2
+    // QuoteCustomField.quote_BUY_CANCEL_NUM,                         // 228                // ETF申购数量	沪L2，深L1、L2
+    // QuoteCustomField.quote_BUY_CANCEL_AMOUNT,                      // 229                // ETF申购金额	沪L2，深证无数据
+    // QuoteCustomField.quote_SELL_CANCEL_COUNT,                      // 230                // ETF赎回笔数	沪L2，深L1、L2
+    // QuoteCustomField.quote_SELL_CANCEL_NUM,                        // 231                // ETF赎回数量	沪L2，深L1、L2
+    // QuoteCustomField.quote_SELL_CANCEL_AMOUNT,                     // 232                // ETF赎回金额	沪L2，深证无数据
+    // QuoteCustomField.quote_INDEX_TURNOVER_RATE,                    // 233                // 沪深京指数换手率
+    // QuoteCustomField.quote_INDEX_TOTAL_VALUE,                      // 234                // 沪深京指数总市值
+    // QuoteCustomField.quote_INDEX_TTM,                              // 235                // 沪深京指数动态市盈率
+    // QuoteCustomField.quote_INDEX_PB,                               // 236                // 沪深京指数市净率
+
   ]
 }
