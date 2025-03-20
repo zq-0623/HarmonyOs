@@ -8,6 +8,7 @@ let RequestMap = {
 struct CateSortingResponse {
   @State message: string = 'Hello World'
   @State myParams: Object = router.getParams();
+  @State autoRefresh: boolean = true; // 开关控制是否进行定时请求
   private title: string = '';
   private request: Request = new Request();
   private param: Record<string, Object> = {};
@@ -32,8 +33,8 @@ struct CateSortingResponse {
         if (resp.list && resp.list.length > 0) {
           for (let i = 0; i < resp.list.length;i++){
             let str:QuoteItem = resp.list.convertToArray()[i]
-            // console.info(`交易状态:${str.status}==代码:${str.id}==沪深市场ETF基金折价率（溢价率）:${str.premiumDiscountRates}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}==名称:${str.name}==最低价:${str.lowPrice}==收益:${str.receipts}==市场:${str.market}==子类别:${str.subtype}==交易时间:${str.datetime}==最新价:${str.lastPrice}==最高价:${str.highPrice}==昨收价:${str.preClosePrice}==昨结价(期权期货):${str.presetPrice}==涨跌:${str.change}==涨跌幅:${str.changeRate}==涨跌比率:${str.changeRate}==总量:${str.volume}==当前成交量:${str.nowVolume}==换手率:${str.turnoverRate}==前5日涨跌幅:${str.changeRate5}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}`)
-            console.info(`代码:${str.id}==ETF申购笔数:${str.buy_cancel_count}==ETF申购数量:${str.buy_cancel_num}==ETF申购金额:${str.buy_cancel_amount}==ETF赎回笔数:${str.sell_cancel_count}==ETF赎回数量:${str.sell_cancel_num}==ETF赎回金额:${str.sell_cancel_amount}`)
+            console.info(`交易状态:${str.status}==代码:${str.id}==最新价:${str.lastPrice}==IOPV:${str.IOPV}==IOPV:${str.hIOPV}==沪深市场ETF基金折价率（溢价率）:${str.premiumDiscountRates}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}==名称:${str.name}==最低价:${str.lowPrice}==收益:${str.receipts}==市场:${str.market}==子类别:${str.subtype}==交易时间:${str.datetime}==最新价:${str.lastPrice}==最高价:${str.highPrice}==昨收价:${str.preClosePrice}==昨结价(期权期货):${str.presetPrice}==涨跌:${str.change}==涨跌幅:${str.changeRate}==涨跌比率:${str.changeRate}==总量:${str.volume}==当前成交量:${str.nowVolume}==换手率:${str.turnoverRate}==前5日涨跌幅:${str.changeRate5}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}`)
+            // console.info(`代码:${str.id}==ETF申购笔数:${str.buy_cancel_count}==ETF申购数量:${str.buy_cancel_num}==ETF申购金额:${str.buy_cancel_amount}==ETF赎回笔数:${str.sell_cancel_count}==ETF赎回数量:${str.sell_cancel_num}==ETF赎回金额:${str.sell_cancel_amount}`)
           }
         }
         if (resp.addValueModel && resp.addValueModel.length > 0) {
@@ -41,21 +42,41 @@ struct CateSortingResponse {
             let str1:AddValueModel = resp.addValueModel.convertToArray()[j]
             console.info(`证券代码:${str1.code}==当前快照日期:${str1.date}==当前快照时间:${str1.time}==超大单主动买入成交量:${str1.ultraLargeBuyVolume}==超大单主动卖出成交量:${str1.ultraLargeSellVolume}==超大单主动买入成交额:${str1.ultraLargeBuyAmount}`)
           }
-
         }
       },
       onFail: (err: ErrorInfo) => {
         console.info("CateSortingRequest error:" + err.getMsg());
       } });
   }
+  private startAutoRefresh() {
+    this.stopAutoRefresh(); // 先清除可能存在的定时器
+    this.intervalId = setInterval(() => {
+      if (this.autoRefresh) {
+        this.sendReq();
+      }
+    }, 3000);
+  }
+
+  private stopAutoRefresh() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = undefined;
+    }
+  }
+
   async aboutToAppear() {
     let recordParam = this.myParams as Record<string, Object>;
     this.title = recordParam['title'] as string;
     this.param = recordParam['param'] as Record<string, Object>;
     this.request = RequestMap[recordParam['request'] as string];
-    this.sendReq()
+
+    this.sendReq(); // 立即请求一次
+    if (this.autoRefresh) {
+      this.startAutoRefresh();
+    }
   }
-  aboutToDisappear(){
-    clearInterval(this.intervalId)
+
+  aboutToDisappear() {
+    this.stopAutoRefresh();
   }
 }

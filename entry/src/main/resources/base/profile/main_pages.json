@@ -3,7 +3,6 @@
     "pages/ApiList",
     "pages/Index",
     "pages/ApiDetail",
-    "pages/QuoteDetailPush",
     "pages/RequestPages/QuoteDetailReq",
     "pages/RequestPages/TradeQuoteReq",
     "pages/RequestPages/QuoteReq",
@@ -56,6 +55,7 @@
     "pages/RequestPages/TCPPush",
     "pages/RequestPages/F10V2Req",
     "pages/Huawei_mqtt_Test/emqxPage",
+    "pages/TestDemo/TestCaseDemo",
 
     "pages/ResponsePages/SearchResp",
     "pages/ResponsePages/SearchV2Resp",

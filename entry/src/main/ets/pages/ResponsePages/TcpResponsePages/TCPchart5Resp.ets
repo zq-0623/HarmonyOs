@@ -28,32 +28,32 @@ struct TCPchart5Response {
     this.param = recordParam['param'] as Record<string, Object>
     let iPush: IPush = new IPush();
     iPush.chart5Push = {push:(code:string,resp:ChartResp) => {
-      this.message = resp.toString();
-      console.info("总点数:" + resp.tickCount)
-      console.info("市场交易时间:" + resp.systemDatetime)
-      console.info("日期列表:" + resp.systemDatetime)
-      console.info("交易时间段:" + resp.timezones)
+      // this.message = resp.toString();
+      // console.info("总点数:" + resp.tickCount)
+      // console.info("市场交易时间:" + resp.systemDatetime)
+      // console.info("日期列表:" + resp.systemDatetime)
+      // console.info("交易时间段:" + resp.timezones)
       if (resp.OHLCItems) {
         for (let i = 0; i < resp.OHLCItems.length; i++) {
           let str:OHLCItem = resp.OHLCItems[i]
-          console.info(`时间:${str.datetime}==开盘价:${str.openPrice}==最高价${str.highPrice}==最低价${str.lowPrice}==收盘价:${str.closePrice}==交易量:${str.tradeVolume}==均价:${str.averagePrice}==参考价/昨收价:${str.referencePrice}==量比:${str.volumeRatio}==总委买:${str.entrustBuyVolume}==总委卖:${str.entrustSellVolume}==委差:${str.entrustDiff}`)
+          // console.info(`时间:${str.datetime}==开盘价:${str.openPrice}==最高价${str.highPrice}==最低价${str.lowPrice}==收盘价:${str.closePrice}==交易量:${str.tradeVolume}==均价:${str.averagePrice}==参考价/昨收价:${str.referencePrice}==量比:${str.volumeRatio}==总委买:${str.entrustBuyVolume}==总委卖:${str.entrustSellVolume}==委差:${str.entrustDiff}`)
         }
       }
       if (resp.AFItems) {
         for (let j = 0; j < resp.AFItems.length; j++) {
           let str:OHLCItem = resp.AFItems[j]
-          console.info(`时间:${str.datetime}==收盘价:${str.closePrice}==参考价/昨收价:${str.referencePrice}`)
+          // console.info(`时间:${str.datetime}==收盘价:${str.closePrice}==参考价/昨收价:${str.referencePrice}`)
         }
       }
       if (resp.tradeDates) {
         for (let k = 0; k < resp.tradeDates.length; k++) {
           let str: string = resp.tradeDates[k]
-          console.info("日期列表:"  + str)
+          // console.info("日期列表:"  + str)
         }
       }
       if (resp.referencePrices){
         resp.referencePrices.forEach((key:string, value:string) => {
-          console.info(`时间:${value}==价格:${key}`)
+          // console.info(`时间:${value}==价格:${key}`)
         })
       }
     }};

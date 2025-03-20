@@ -5,12 +5,12 @@ import { OHLCPeriod, OHLCPriceAdjustedMode, RequestType } from 'SseCore'
 struct NewThreeHundredK {
   @State message: string = 'Hello World'
   requestList:Array<ListRequestType> = [
-    {title: "最新300根历史K线-SH不复权",request: "OHLCReq",param:{code:"605398.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
-    {title: "最新300根历史K线-SH前复权",request: "OHLCReq",param:{code:"605398.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,requestType:RequestType.RequestTypeRecent}},
-    {title: "最新300根历史K线-SH后复权",request: "OHLCReq",param:{code:"605398.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeBackward,requestType:RequestType.RequestTypeRecent}},
-    {title: "最新300根历史K线-SZ不复权",request: "OHLCReq",param:{code:"001391.sz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
-    {title: "最新300根历史K线-SZ前复权",request: "OHLCReq",param:{code:"001391.sz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,requestType:RequestType.RequestTypeRecent}},
-    {title: "最新300根历史K线-SZ后复权",request: "OHLCReq",param:{code:"001391.sz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeBackward,requestType:RequestType.RequestTypeRecent}},
+    {title: "最新300根历史K线-SH不复权",request: "OHLCReq",param:{code:"600809.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
+    {title: "最新300根历史K线-SH前复权",request: "OHLCReq",param:{code:"600809.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,requestType:RequestType.RequestTypeRecent}},
+    {title: "最新300根历史K线-SH后复权",request: "OHLCReq",param:{code:"600809.sh", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeBackward,requestType:RequestType.RequestTypeRecent}},
+    {title: "最新300根历史K线-SZ不复权",request: "OHLCReq",param:{code:"000858.sz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
+    {title: "最新300根历史K线-SZ前复权",request: "OHLCReq",param:{code:"000858.sz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,requestType:RequestType.RequestTypeRecent}},
+    {title: "最新300根历史K线-SZ后复权",request: "OHLCReq",param:{code:"000858.sz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeBackward,requestType:RequestType.RequestTypeRecent}},
     {title: "最新300根历史K线-BZ不复权",request: "OHLCReq",param:{code:"832662.bz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin30,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeNone,requestType:RequestType.RequestTypeRecent}},
     {title: "最新300根历史K线-BZ前复权",request: "OHLCReq",param:{code:"832662.bz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeForward,requestType:RequestType.RequestTypeRecent}},
     {title: "最新300根历史K线-BZ后复权",request: "OHLCReq",param:{code:"832662.bz", subtype:"1001",period:OHLCPeriod.OHLCPeriodMin1,priceAdjustedMode:OHLCPriceAdjustedMode.OHLCPriceAdjustedModeBackward,requestType:RequestType.RequestTypeRecent}},

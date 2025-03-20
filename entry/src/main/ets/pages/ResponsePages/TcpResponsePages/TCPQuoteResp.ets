@@ -45,6 +45,42 @@ struct TCPQuoteResponse {
           console.info(`五档/十档 买价:${item.buyPrices.at(i)}`)
         }
       }
+      if (item.sellBrokerInfos){      // 卖经济席位列表   只有港股才有
+        if (item.sellBrokerInfos.values()) {
+          for (let element of item.sellBrokerInfos.values()!) {
+            console.info("ID:" + element.id);
+            console.info("证券名称:" + element.corp);
+            console.info("证券全名:" + element.corportion);
+            console.info("买卖方向:" + element.state);  // 0卖1买
+          }
+        }
+      }
+      // if (item.sellPrices) {
+      //   for (let i = 0; i < item.sellPrices.length; i++) {
+      //     console.info(`五档/十档 卖价:${item.sellPrices.at(i)}`)
+      //   }
+      // }
+      // if (item.buySingleVolumes) {
+      //   for (let i = 0; i < item.buySingleVolumes.length; i++) {
+      //     console.info(`五档/十档 委托总笔数（买）:${item.buySingleVolumes.at(i)}`)
+      //   }
+      // }
+      // if (item.sellSingleVolumes) {
+      //   for (let i = 0; i < item.sellSingleVolumes.length; i++) {
+      //     console.info(`五档/十档 委托总笔数（卖）:${item.sellSingleVolumes.at(i)}`)
+      //   }
+      // }
+      // if (item.buyVolumes) {
+      //   for (let i = 0; i < item.buyVolumes.length; i++) {
+      //     console.info(`五档/十档 买量：${item.buyVolumes.at(i)}`)
+      //   }
+      // }
+      // if (item.sellVolumes) {
+      //   for (let i = 0; i < item.sellVolumes.length; i++) {
+      //     console.info(`五档/十档 卖量：${item.sellVolumes.at(i)}`)
+      //   }
+      // }
+
 
     }};
     SseSDK.setIPush(iPush);

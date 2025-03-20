@@ -8,6 +8,7 @@ let RequestMap = {
 struct DRListResponse {
   @State message: string = 'Hello World'
   @State myParams: Object = router.getParams();
+  @State autoRefresh: boolean = true; // 开关控制是否进行定时请求
   private title: string = '';
   private request: Request = new Request();
   private param: Record<string, Object> = {};
@@ -44,14 +45,35 @@ struct DRListResponse {
         console.info("AHListRequest error:" + err.getMsg());
       } });
   }
+  private startAutoRefresh() {
+    this.stopAutoRefresh(); // 先清除可能存在的定时器
+    this.intervalId = setInterval(() => {
+      if (this.autoRefresh) {
+        this.sendReq();
+      }
+    }, 3000);
+  }
+
+  private stopAutoRefresh() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = undefined;
+    }
+  }
+
   async aboutToAppear() {
     let recordParam = this.myParams as Record<string, Object>;
     this.title = recordParam['title'] as string;
     this.param = recordParam['param'] as Record<string, Object>;
     this.request = RequestMap[recordParam['request'] as string];
-    this.sendReq()
+
+    this.sendReq(); // 立即请求一次
+    if (this.autoRefresh) {
+      this.startAutoRefresh();
+    }
   }
-  aboutToDisappear(){
-    clearInterval(this.intervalId)
+
+  aboutToDisappear() {
+    this.stopAutoRefresh();
   }
 }

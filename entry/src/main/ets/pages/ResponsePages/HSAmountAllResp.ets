@@ -9,6 +9,7 @@
 // struct HSAmountAllResponse {
 //   @State message: string = 'Hello World'
 //   @State myParams: Object = router.getParams();
+  @State autoRefresh: boolean = true; // 开关控制是否进行定时请求
 //   private title: string = '';
 //   private request: Request = new Request();
 //   private param: Record<string, Object> = {};

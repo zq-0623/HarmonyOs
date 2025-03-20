@@ -9,6 +9,7 @@ let RequestMap = {
 struct QuoteResponse {
   @State message: string = 'Hello World'
   @State myParams: Object = router.getParams();
+  @State autoRefresh: boolean = true; // 开关控制是否进行定时请求
   private title: string = '';
   private request: Request = new Request();
   private param: Record<string, Object> = {};
@@ -38,8 +39,8 @@ struct QuoteResponse {
         this.message = resp.toString();   // 输出response到手机屏幕  string类型
         if (resp.quoteItems && resp.addValueModels) {
           for (let i = 0; i < resp.quoteItems.length; i++) {
-            // let str = resp.quoteItems.convertToArray()[i]
-            // console.info(`股票状态:${str.status}代码:${str.id}=股票名称:${str.name}=换手率:${str.turnoverRate}=前5日换手率:${str.turnoverRate5}=前10日换手率:${str.turnoverRate10}=前20日换手率:${str.turnoverRate20}=交易时间:${str.datetime}=拼音:${str.pinyin}=市场:${str.market}=子类别:${str.subtype}=最新价:${str.lastPrice}=最高价:${str.highPrice}=最低价:${str.lowPrice}=今开价:${str.openPrice}=昨收价:${str.preClosePrice}=涨跌比率:${str.changeRate}=总量:${str.volume}=当前成交量:${str.nowVolume}=换手率:${str.turnoverRate}=涨跌幅限制类型:${str.upDownLimitType}=跌停价:${str.limitDown}=涨停价:${str.limitUP}=均价:${str.averageValue}=涨跌:${str.change}=成交金额:${str.amount}=量比:${str.volumeRatio}=买一价:${str.buyPrice}=卖一价:${str.sellPrice}=外盘量:${str.buyVolume}=内盘量:${str.sellVolume}=总值:${str.totalValue}=总值只有港股有值:${str.HKTotalValue}=流值:${str.flowValue}=净资产:${str.netAsset}=PE(市盈):${str.pe}=静态市盈率:${str.pe2}=PB(市净率):${str.pb}=总股本:${str.capitalization}=流通股:${str.circulatingShares}=五档/十档买价:${str.buyPrices}=五档/十档卖价:${str.sellPrices}=五档/十档委托总笔数（买）:${str.buySingleVolumes}=五档/十档委托总笔数（卖）:${str.sellSingleVolumes}=五档/十档买量:${str.buyVolumes}=五档/十档卖量:${str.sellVolumes}=振幅比率:${str.amplitudeRate}=收益:${str.receipts}=上涨家数:${str.upCount}=平盘家数:${str.sameCount}=下跌家数:${str.downCount}=期权类型:${str.optionType}=涨跌幅:${str.changeRate}=涨跌标识:${str.upDownFlag}=限价买数量上限:${str.buyQtyUpperLimit}=限价卖数量上限:${str.sellQtyUpperLimit}=市价买数量上限:${str.marketBuyQtyUpperLimit}=市价卖数量上限:${str.marketSellQtyUpperLimit}=盘后成交量:${str.afterHoursVolume}=盘后成交额:${str.afterHoursAmount}=盘后成交笔数:${str.afterHoursTransactionNumber}=盘后撤单买笔数:${str.afterHoursWithdrawBuyCount}=盘后撤单买数量:${str.afterHoursWithdrawBuyVolume}=盘后撤单卖笔数:${str.afterHoursWithdrawSellCount}=盘后撤单卖数量:${str.afterHoursWithdrawSellVolume}=盘后委托买入总量:${str.afterHoursBuyVolume}=盘后委托卖出总量:${str.afterHoursSellVolume}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}==申购笔数wbn:${str.buy_cancel_count}==申购数量wba:${str.buy_cancel_num}==申购金额wbm:${str.buy_cancel_amount}==赎回笔数wsn:${str.sell_cancel_count}==赎回数量wsa:${str.sell_cancel_num}==赎回金额wsm:${str.sell_cancel_amount}==总卖量:${str.sumSell}==总买量:${str.sumBuy}==均买价:${str.averageBuy}==均卖价:${str.averageSell}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}==沪深京指数换手率:${str.indexTurnoverRate}==沪深京指数总市值:${str.indexTotalValue}==沪深京指数动态市盈率:${str.indexTTM}==沪深京指数市净率:${str.indexPB}==沪深市场ETF基金折价率（溢价率）:${str.premiumDiscountRates}==ETF申购笔数:${str.buy_cancel_count}==ETF申购数量:${str.buy_cancel_num}==ETF申购金额:${str.buy_cancel_amount}==ETF赎回笔数:${str.sell_cancel_count}==ETF赎回数量:${str.sell_cancel_num}==ETF赎回金额:${str.sell_cancel_amount}`);
+            let str = resp.quoteItems.convertToArray()[i]
+            console.info(`股票状态:${str.status}代码:${str.id}=股票名称:${str.name}=换手率:${str.turnoverRate}=前5日换手率:${str.turnoverRate5}=前10日换手率:${str.turnoverRate10}=前20日换手率:${str.turnoverRate20}=交易时间:${str.datetime}=拼音:${str.pinyin}=市场:${str.market}=子类别:${str.subtype}=最新价:${str.lastPrice}=最高价:${str.highPrice}=最低价:${str.lowPrice}=今开价:${str.openPrice}=昨收价:${str.preClosePrice}=涨跌比率:${str.changeRate}=总量:${str.volume}=当前成交量:${str.nowVolume}=换手率:${str.turnoverRate}=涨跌幅限制类型:${str.upDownLimitType}=跌停价:${str.limitDown}=涨停价:${str.limitUP}=均价:${str.averageValue}=涨跌:${str.change}=成交金额:${str.amount}=量比:${str.volumeRatio}=买一价:${str.buyPrice}=卖一价:${str.sellPrice}=外盘量:${str.buyVolume}=内盘量:${str.sellVolume}=总值:${str.totalValue}=总值只有港股有值:${str.HKTotalValue}=流值:${str.flowValue}=净资产:${str.netAsset}=PE(市盈):${str.pe}=静态市盈率:${str.pe2}=PB(市净率):${str.pb}=总股本:${str.capitalization}=流通股:${str.circulatingShares}=五档/十档买价:${str.buyPrices}=五档/十档卖价:${str.sellPrices}=五档/十档委托总笔数（买）:${str.buySingleVolumes}=五档/十档委托总笔数（卖）:${str.sellSingleVolumes}=五档/十档买量:${str.buyVolumes}=五档/十档卖量:${str.sellVolumes}=振幅比率:${str.amplitudeRate}=收益:${str.receipts}=上涨家数:${str.upCount}=平盘家数:${str.sameCount}=下跌家数:${str.downCount}=期权类型:${str.optionType}=涨跌幅:${str.changeRate}=涨跌标识:${str.upDownFlag}=限价买数量上限:${str.buyQtyUpperLimit}=限价卖数量上限:${str.sellQtyUpperLimit}=市价买数量上限:${str.marketBuyQtyUpperLimit}=市价卖数量上限:${str.marketSellQtyUpperLimit}=盘后成交量:${str.afterHoursVolume}=盘后成交额:${str.afterHoursAmount}=盘后成交笔数:${str.afterHoursTransactionNumber}=盘后撤单买笔数:${str.afterHoursWithdrawBuyCount}=盘后撤单买数量:${str.afterHoursWithdrawBuyVolume}=盘后撤单卖笔数:${str.afterHoursWithdrawSellCount}=盘后撤单卖数量:${str.afterHoursWithdrawSellVolume}=盘后委托买入总量:${str.afterHoursBuyVolume}=盘后委托卖出总量:${str.afterHoursSellVolume}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}==申购笔数wbn:${str.buy_cancel_count}==申购数量wba:${str.buy_cancel_num}==申购金额wbm:${str.buy_cancel_amount}==赎回笔数wsn:${str.sell_cancel_count}==赎回数量wsa:${str.sell_cancel_num}==赎回金额wsm:${str.sell_cancel_amount}==总卖量:${str.sumSell}==总买量:${str.sumBuy}==均买价:${str.averageBuy}==均卖价:${str.averageSell}==前3日涨跌幅:${str.changeRate3}==前60日涨跌幅:${str.changeRate60}==昨日涨跌幅:${str.yesterdayChangeRate}==沪深京指数换手率:${str.indexTurnoverRate}==沪深京指数总市值:${str.indexTotalValue}==沪深京指数动态市盈率:${str.indexTTM}==沪深京指数市净率:${str.indexPB}==沪深市场ETF基金折价率（溢价率）:${str.premiumDiscountRates}==ETF申购笔数:${str.buy_cancel_count}==ETF申购数量:${str.buy_cancel_num}==ETF申购金额:${str.buy_cancel_amount}==ETF赎回笔数:${str.sell_cancel_count}==ETF赎回数量:${str.sell_cancel_num}==ETF赎回金额:${str.sell_cancel_amount}`);
             // console.info("股票状态：" + resp.quoteItems.convertToArray()[i].status)
             // console.info("代码：" + resp.quoteItems.convertToArray()[i].id)
             // console.info("代码：" + resp.quoteItems.convertToArray()[i].id)
@@ -116,15 +117,35 @@ struct QuoteResponse {
         console.info("QuoteRequest error：:" + err.getMsg());
       } });
   }
+  private startAutoRefresh() {
+    this.stopAutoRefresh(); // 先清除可能存在的定时器
+    this.intervalId = setInterval(() => {
+      if (this.autoRefresh) {
+        this.sendReq();
+      }
+    }, 3000);
+  }
+
+  private stopAutoRefresh() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = undefined;
+    }
+  }
+
   async aboutToAppear() {
     let recordParam = this.myParams as Record<string, Object>;
     this.title = recordParam['title'] as string;
     this.param = recordParam['param'] as Record<string, Object>;
     this.request = RequestMap[recordParam['request'] as string];
-    this.sendReq()
+
+    this.sendReq(); // 立即请求一次
+    if (this.autoRefresh) {
+      this.startAutoRefresh();
+    }
   }
 
-  aboutToDisappear(){
-    clearInterval(this.intervalId)
+  aboutToDisappear() {
+    this.stopAutoRefresh();
   }
 }

@@ -21,18 +21,18 @@ export default class EntryAbility extends UIAbility {
     SseSDK.setDebug(true,true);
     SseSDK.permission()
       // SseSDK.permission().setLevel(Permission.LEVEL_1)   // 1、统一设置沪深L1权限，不给默认会有L1的权限
-      .addShSzPermission(Permission.SH_LEVEL_1)  // 2、沪L1权限
-      .addShSzPermission(Permission.SZ_LEVEL_1)  // 2、深L1权限
-      // .addShSzPermission(Permission.SH_LEVEL_2)  // 沪L2权限
-      // .addShSzPermission(Permission.SZ_LEVEL_2)  // 深L2权限
+      // .addShSzPermission(Permission.SH_LEVEL_1)  // 2、沪L1权限
+      // .addShSzPermission(Permission.SZ_LEVEL_1)  // 2、深L1权限
+      .addShSzPermission(Permission.SH_LEVEL_2)  // 沪L2权限
+      .addShSzPermission(Permission.SZ_LEVEL_2)  // 深L2权限
       // .addShSzPermission(Permission.SH_L2_PLUS)  // 沪L2plus权限  后台若配置L2plus权限，则SDK可以不用单独设置，但必须设置L2权限
       // .addShSzPermission(Permission.SZ_L2_PLUS)  // 深L2plus权限
       // .addShSzOverseaPermission(Permission.OL_LEVEL_1)  // 境外沪深Level1权限必须一起设置，不支持单独设置
       // .addShSzOverseaPermission(Permission.OL_SH_LEVEL_2)  // 境外上海Level2
       // .addShSzOverseaPermission(Permission.OL_SZ_LEVEL_2)  // 境外深圳Level2
-      .addHkPermission(Permission.HK10)   // 港股10档
-      // .addHkPermission(Permission.SHHK5)  // 沪港通5档
-      // .addHkPermission(Permission.SZHK5)  // 深港通5档
+      // .addHkPermission(Permission.HK10)   // 港股10档
+      .addHkPermission(Permission.SHHK5)  // 沪港通5档
+      .addHkPermission(Permission.SZHK5)  // 深港通5档
       // .addHkPermission(Permission.HKA1)   // 港股实时1档
       // .addHkPermission(Permission.SHHK1)  // 沪港通1档
       // .addHkPermission(Permission.SZHK1)  // 深港通1档
@@ -41,7 +41,7 @@ export default class EntryAbility extends UIAbility {
       // .addHkPermission(Permission.HKDZ)  // 港股指数延时
       .addHKOverseaPermission(Permission.OL_HK10)  // 境外港股10档
       .addHKOverseaPermission(Permission.OL_HKA1)  // 境外港股1档
-      .setSseLevel(Permission.LEVEL_1)   //统一设置大商所、郑商所、全球、外汇市场的level
+      .setSseLevel(Permission.LEVEL_2)   //统一设置大商所、郑商所、全球、外汇市场的level
       // .submit();   // 初始化注册之前不能调该方法，更新权限时会获取不到港股境外权限
     // let iPush: IPush = new IPush();
     // iPush.tickRestorePush = {push:(code,resp:L2TickRestoreResp) => {

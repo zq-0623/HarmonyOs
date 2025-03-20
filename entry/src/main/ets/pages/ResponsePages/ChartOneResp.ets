@@ -9,6 +9,7 @@ let RequestMap = {
 struct ChartOneResponse {
   @State message: string = 'Hello World'
   @State myParams: Object = router.getParams();
+  @State autoRefresh: boolean = true; // 开关控制是否进行定时请求
   private title: string = '';
   private request: Request = new Request();
   private param: Record<string, Object> = {};
@@ -45,7 +46,7 @@ struct ChartOneResponse {
         if (resp.OHLCItems) {
           for (let i = 0; i < resp.OHLCItems.length; i++) {
             let str:OHLCItem = resp.OHLCItems.convertToArray()[i]
-            console.info(`交易时间:${str.datetime}==开盘价:${str.openPrice}==最高价:${str.highPrice}==最低价:${str.lowPrice}==收盘价:${str.closePrice}==交易量:${str.tradeVolume}==均价:${str.averagePrice}==参考价/昨收价:${str.referencePrice}==成交额:${str.amount}==红绿柱MD值(仅指数):${str.rgbar}==持仓量(中金所):${str.openInterest}==基金净值:${str.IOPV}==基金净值参考价:${str.referenceIOPVPrice}==盘后成交量:${str.afterHoursVolume}==盘后成交额:${str.afterHoursAmount}==量比:${str.volumeRatio}==总委买:${str.entrustBuyVolume}==总委卖:${str.entrustSellVolume}==委差:${str.entrustDiff}`)
+            console.info(`交易时间:${str.datetime}==开盘价:${str.openPrice}==最高价:${str.highPrice}==最低价:${str.lowPrice}==收盘价:${str.closePrice}==交易量:${str.tradeVolume}==均价:${str.averagePrice}==参考价/昨收价:${str.referencePrice}==成交额:${str.amount}==红绿柱MD值(仅指数):${str.rgbar}==持仓量(中金所):${str.openInterest}==基金净值:${str.IOPV}==基金净值参考价:${str.referenceIOPVPrice}==量比:${str.volumeRatio}==总委买:${str.entrustBuyVolume}==总委卖:${str.entrustSellVolume}==委差:${str.entrustDiff}`)
           }
         }
         if (resp.AFItems) {
@@ -67,15 +68,35 @@ struct ChartOneResponse {
       } });
   }
 
+  private startAutoRefresh() {
+    this.stopAutoRefresh(); // 先清除可能存在的定时器
+    this.intervalId = setInterval(() => {
+      if (this.autoRefresh) {
+        this.sendReq();
+      }
+    }, 3000);
+  }
+
+  private stopAutoRefresh() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = undefined;
+    }
+  }
+
   async aboutToAppear() {
     let recordParam = this.myParams as Record<string, Object>;
     this.title = recordParam['title'] as string;
     this.param = recordParam['param'] as Record<string, Object>;
     this.request = RequestMap[recordParam['request'] as string];
-    this.sendReq()
+
+    this.sendReq(); // 立即请求一次
+    if (this.autoRefresh) {
+      this.startAutoRefresh();
+    }
   }
 
-  aboutToDisappear(){
-    clearInterval(this.intervalId)
+  aboutToDisappear() {
+    this.stopAutoRefresh();
   }
 }
